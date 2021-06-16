@@ -1,0 +1,1 @@
+@extends("Layout.Admin.master")
