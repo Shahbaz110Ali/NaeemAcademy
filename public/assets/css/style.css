@@ -1545,3 +1545,21 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+.subject-topics ul{
+  list-style: none;
+}
+.subject-topics ul li i{
+  color:#5fcf80;
+  font-size: 20px; 
+}
+
+.subject-topics ul li a{
+  color:gray;
+  font-size: 20px; 
+}
+
+.subject-topics ul li a:hover{
+  color:#5fcf80;
+  font-size: 20px; 
+}

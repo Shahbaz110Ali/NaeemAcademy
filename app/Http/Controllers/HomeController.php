@@ -35,4 +35,15 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function subjectDetails()
+    {
+        return view('subject-details');
+    }
+
+    public function Quiz()
+    {
+        return view('quiz');
+    }
+    
 }
