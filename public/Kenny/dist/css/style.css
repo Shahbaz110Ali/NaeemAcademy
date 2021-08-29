@@ -2155,7 +2155,7 @@ button.fancy-button.btn-warning.btn-0.fc-agendaWeek-button:hover, .fancy-button.
 .side-nav {
   border: none;
   height: 100%;
-  width: 100%;
+  width: 100% !important;
   position: relative;
   border-radius: 0;
   margin: 0;
@@ -4095,7 +4095,7 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
 
 .ct-chart-bar .ct-label.ct-horizontal.ct-end {
   font-family: "Varela Round", sans-serif;
-  color: #black;
+  color: #000;
 }
 
 /*Easy pie chart*/
@@ -6554,3 +6554,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.d-none {
+  display: none;
+}

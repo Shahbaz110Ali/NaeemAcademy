@@ -1546,6 +1546,32 @@ section {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
+.subjects {
+  margin-bottom: 2rem;
+}
+
+.subjects h5 {
+  background-color: #e8ffee;
+  border-bottom: 1px solid #dedede;
+  margin: 0 0 10px;
+  padding: 5px 5px 5px 20px;
+}
+
+.subjects ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subjects ul li{
+  margin-top:10px;
+}
+
+.courses-aside {
+  border: 1px solid #eef0ef;
+}
+=======
 .subject-topics ul{
   list-style: none;
 }
@@ -1563,3 +1589,4 @@ section {
   color:#5fcf80;
   font-size: 20px; 
 }
+>>>>>>> aeabde43fec81d1432d731ff2a16885260048676
