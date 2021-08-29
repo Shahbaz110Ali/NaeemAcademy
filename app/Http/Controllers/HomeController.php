@@ -35,4 +35,8 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function viewJob(Request $request) {
+        return view('job-detail');
+    }
 }

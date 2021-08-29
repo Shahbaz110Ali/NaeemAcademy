@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	@include('Layout.Admin.head')
+	@include('Layout.includes.head')
 	<body>
 		<!--Preloader-->
 		<div class="preloader-it">
@@ -28,8 +28,13 @@
 										<div class="panel-body">
 											<div class="row">
 												<div class="col-sm-12 col-xs-12">
+													@error('email')
+													<div class="alert alert-danger alert-dismissable">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>{{ $message }}
+													</div>
+													@enderror
 													<div class="form-wrap">
-														<form action="{{ route('admin.login') }}" method="POST">
+														<form action="{{ route('admin.authenticate') }}" method="POST">
 															@csrf
 															<div class="form-group">
 																<label class="control-label mb-10" for="email">Email address</label>
@@ -79,6 +84,6 @@
 		</div>
 		<!-- /#wrapper -->
 		
-		@include('Layout.Admin.foot')
+		@include('Layout.includes.foot')
 	</body>
 </html>
