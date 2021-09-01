@@ -13,7 +13,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('interface', [App\Http\Controllers\Admin\TestController::class, 'interface'])->name('admin.interface');
     Route::get('interface/add', [App\Http\Controllers\Admin\TestController::class, 'interface_add'])->name('admin.interface.add');
     Route::post('interface/store', [\App\Http\Controllers\Admin\TestController::class, 'interface_store'])->name('admin.interface.store');
-    Route::post('interface/store', [\App\Http\Controllers\Admin\TestController::class, 'interface_save'])->name('admin.interface.save');
+    Route::post('interface/save', [\App\Http\Controllers\Admin\TestController::class, 'interface_save'])->name('admin.interface.save');
     Route::get('interface/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'interface_edit'])->name('admin.interface.edit');
     Route::post('tests/department/store', [App\Http\Controllers\Admin\TestController::class, 'attachDepartment'])->name('admin.tests.department.store');
     /** /. Test Routes */
