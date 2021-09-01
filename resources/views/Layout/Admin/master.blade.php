@@ -202,8 +202,16 @@
                     <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>General Recruitment</a>
                 </li>
                 <li>
-                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>JST / PST <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>Manage Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
                     <ul id="dashboard_dr" class="collapse collapse-level-1">
+                        
+                        <li>
+                            <a href="{{ route('admin.interface.add') }}">Create New Interface</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.interface') }}">Manage Interfaces</a>
+                        </li>
+                       
                         <li>
                             <a href="{{ route('admin.jst-pst.subjects') }}">Subjects</a>
                         </li>
@@ -221,9 +229,7 @@
                 <li>
                     <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>Mock Test</a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.tests') }}"><i class="icon-pencil mr-10"></i>Test</a>
-                </li>
+                
                 <li>
                     <a href="{{ route('admin.subjects') }}"><i class="icon-book-open mr-10"></i>Subjects</a>
                 </li>

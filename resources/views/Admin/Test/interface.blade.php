@@ -12,7 +12,7 @@
                         <h6 class="panel-title txt-dark">Tests</h6>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ route('admin.tests.add') }}" class="btn btn-primary btn-sm">New Test</a>
+                        <a href="{{ route('admin.interface.add') }}" class="btn btn-primary btn-sm">New Interface</a>
                     </div>
                     <div class="clearfix"></div>
                     <hr>
@@ -25,26 +25,22 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Home Page Active</th>
-                                            <th>Priority</th>
+                                            <th>Description</th>
                                             <th>Status</th>
                                             <th class="text-nowrap">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($interfaces as $item)
                                         <tr>
-                                            <td>Lunar probe project</td>
-                                            <td>
-                                                <div class="label label-table label-success">Active</div>
-                                                <div class="label label-table label-danger">Inactive</div>
-                                            </td>
-                                            <td>1</td>
+                                            <td>{{$item['title']}}</td>
+                                            <td>{{$item['description']}}</td>
                                             <td>
                                                 <div class="label label-table label-success">Active</div>
                                                 <div class="label label-table label-danger">Inactive</div>
                                             </td>
                                             <td class="text-nowrap">
-                                                <a href="#" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                <a href="{{route("admin.interface.edit",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                                                     <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                 <a href="#" class="mr-25" data-toggle="tooltip" data-original-title="View">
                                                     <i class="fa fa-eye text-inverse m-r-10"></i> </a>
@@ -52,6 +48,13 @@
                                                         class="fa fa-close text-danger"></i> </a>
                                             </td>
                                         </tr>
+                                        
+                                            
+                                        @empty
+                                        <tr>
+                                            <td colspan="4">Empty</td>
+                                        </tr>   
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

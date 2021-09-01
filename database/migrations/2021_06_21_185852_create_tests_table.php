@@ -16,13 +16,13 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id')->nullable();
-            $table->integer('subject_id')->nullable();
-            $table->integer('topic_id')->nullable();
-            $table->integer('is_mixed')->default(0);
-            $table->string('title');
-            $table->integer('duration');
-            $table->integer('total_questions');
-            $table->integer('total_options');
+            $table->string('duration');
+            $table->string('max_marks')->default("100");
+            $table->string('min_marks')->default("0");
+            $table->string('negative_marks')->default("0");
+            $table->integer('total_options')->default(4);
+            $table->string('is_trackable')->default("no");
+            $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

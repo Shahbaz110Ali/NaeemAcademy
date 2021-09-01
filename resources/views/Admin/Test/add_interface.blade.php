@@ -10,35 +10,34 @@
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <div class="form-wrap">
-                                    <form action="{{ route('admin.tests.store') }}" method="POST">
+                                    <form action="{{ route('admin.interface.store') }}" method="POST">
                                         @csrf
                                         <div class="form-body">
-                                            <h6 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Test
-                                                Details</h6>
+                                            <h3 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Interface Details</h3>
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Title</label>
                                                         <input type="text" class="form-control" name="title"
-                                                            placeholder="General Recruitment Test"
+                                                            placeholder="Title"
                                                             value="{{ old('title') }}">
                                                         @error('title')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">About</label>
-                                                        <textarea name="about" class="form-control" rows="3"
-                                                            placeholder="More about this test..">{{ old('about') }}</textarea>
-                                                        @error('about')
+                                                        <label class="control-label">Description</label>
+                                                        <textarea name="description" class="form-control" rows="3"
+                                                            placeholder="More about this interface..">{{ old('description') }}</textarea>
+                                                        @error('description')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- /Row -->
-                                            <div class="row">
+                                            {{-- <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Include Departments</label>
@@ -64,8 +63,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Row -->
-                                            <div class="seprator-block"></div>
+                                            <!-- /Row --> --}}
+                                            {{-- <div class="seprator-block"></div>
                                             <h6 class="txt-dark capitalize-font"><i class="icon-home mr-10"></i>Home Page Settings</h6>
                                             <hr>
                                             <div class="row">
@@ -89,10 +88,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-actions mt-10">
                                             <button type="submit" class="btn btn-success  mr-10"> Save</button>
-                                            <button type="button" class="btn btn-default">Cancel</button>
+                                            <a href="{{route("admin.interface")}}" class="btn btn-default">Cancel</a>
                                         </div>
                                     </form>
                                 </div>

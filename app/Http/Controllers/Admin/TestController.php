@@ -4,49 +4,56 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Test;
 use Illuminate\Validation\Rule;
+
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Test;
+use App\Models\Question;
+use App\Models\TrackTest;
 
 class TestController extends Controller
 {
-    public function index() {
-        $tests = Test::get()->toArray();
-        return view("Admin.Test.index", compact('tests'));
+    public function interface() {
+        $interfaces = Category::get()->toArray();
+        return view("Admin.Test.interface", compact('interfaces'));
     }
 
-    public function add() {
-        return view("Admin.Test.add");
+    public function interface_add() {
+        return view("Admin.Test.add_interface");
     }
 
-    public function store(Request $request) {
+    public function interface_store(Request $request) {
+        
         $validated = $request->validate([
             'title' => 'required',
-            'about' => 'required',
-            'status_id' => 'required',
-            'home_page_active' => [
-                'numeric',
-                Rule::in([1, 0]),
-            ],
-            'priority' => [
-                'numeric',
-                Rule::in([1, 2, 3]),
-            ],
-            'include_department' => [
-                'numeric',
-                Rule::in([0, 1]),
-            ]
+            'description' => 'required',
         ],$request->all());
-        $test = Test::create($validated);
-        if($test->id) {
-            return redirect()->route('admin.tests.edit', $test->id)->with(['toast' => 'success', 'msg' => 'Test created successfully']);
+        $interface = Category::create($validated);
+        if($interface->id) {
+            return redirect()->route('admin.interface.edit', $interface->id)->with(['toast' => 'success', 'msg' => 'Interface created successfully']);
         } else {
-            return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Test']);
+            return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Interface']);
         }
     }
 
-    public function edit($id) {
-        $test = Test::find($id)->toArray();
-        return view('Admin.Test.edit', compact('test'));
+    public function interface_save(Request $request) {
+        $id = $request->post("id");
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ],$request->all());
+        $interface = Category::where("id",$id)->update($validated);
+        if($interface) {
+            return redirect()->route('admin.interface.edit', $id)->with(['toast' => 'success', 'msg' => 'Interface Updated successfully']);
+        } else {
+            return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Interface']);
+        }
+    }
+
+    public function interface_edit($id) {
+        $interface = Category::find($id)->toArray();
+        return view('Admin.Test.edit_interface', compact('interface'));
     }
 
     public function attachDepartment(Request $request) {
