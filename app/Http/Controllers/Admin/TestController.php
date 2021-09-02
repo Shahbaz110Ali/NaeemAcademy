@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\Category;
@@ -15,7 +16,7 @@ use App\Models\TrackTest;
 class TestController extends Controller
 {
     public function interface() {
-        $interfaces = Category::get()->toArray();
+        $interfaces = Category::where("parent_id",null)->get()->toArray();
         return view("Admin.Test.interface", compact('interfaces'));
     }
 
@@ -28,10 +29,11 @@ class TestController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'status' => 'required',
         ],$request->all());
         $interface = Category::create($validated);
         if($interface->id) {
-            return redirect()->route('admin.interface.edit', $interface->id)->with(['toast' => 'success', 'msg' => 'Interface created successfully']);
+            return redirect()->route('admin.interface')->with(['toast' => 'success', 'msg' => 'Interface created successfully']);
         } else {
             return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Interface']);
         }
@@ -42,10 +44,11 @@ class TestController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'status' => 'required',
         ],$request->all());
         $interface = Category::where("id",$id)->update($validated);
         if($interface) {
-            return redirect()->route('admin.interface.edit', $id)->with(['toast' => 'success', 'msg' => 'Interface Updated successfully']);
+            return redirect()->route('admin.interface')->with(['toast' => 'success', 'msg' => 'Interface Updated successfully']);
         } else {
             return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Interface']);
         }
@@ -56,11 +59,282 @@ class TestController extends Controller
         return view('Admin.Test.edit_interface', compact('interface'));
     }
 
-    public function attachDepartment(Request $request) {
-        $validated = $request->validate([
-            'department' => 'required',
-            'test_id' => 'required'
-        ],$request->all());
-        dd($request->all());
+    public function  category($id){
+        $data["parent"] = Category::where("id",$id)->get()->toArray()[0];
+        $data["categories"] = Category::where("parent_id",$id)->get()->toArray();
+        $data["tests"] = Test::where("category_id",$id)->get()->toArray();
+        // dd($data);
+        return view('Admin.Test.categories', compact('data'));
+
     }
+
+    public function category_add($id) {
+        $data["parent"] = Category::where("id",$id)->get()->toArray()[0];
+        return view("Admin.Test.add_category",$data);
+    }
+
+    public function category_store(Request $request) {
+        $controls = $request->all();
+        $rules = [
+            "parent_id"=> "required",
+            "title" =>  "required",
+            'status' => "required",
+        ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $data = [
+                "parent_id"=>$controls["parent_id"],
+                "title"=>$controls['title'],
+                "status"=>$controls['status'],
+            ];
+            $category = Category::create($data);
+            if($category->id) {
+                return redirect()->route('admin.category', $controls["parent_id"])->with(['toast' => 'success', 'msg' => 'Category created successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Category']);
+            }
+        }
+        
+        
+        
+    }
+
+    public function category_save(Request $request) {
+        $controls = $request->all();
+        $rules = [
+            "id"=> "required",
+            "title" =>  "required",
+            'status' => "required",
+        ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $id = $request->post("id");
+            $parent_id = $request->post("parent_id");
+            $data = [
+                "title"=>$controls['title'],
+                'status'=>$controls['status'],
+            ];
+            $interface = Category::where("id",$id)->update($data);
+            if($interface) {
+                return redirect()->route('admin.category', $parent_id)->with(['toast' => 'success', 'msg' => 'Category Updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Category']);
+            }
+
+        }
+       
+        
+        
+    }
+
+    public function category_edit($id) {
+        $category = Category::find($id)->toArray();
+        return view('Admin.Test.edit_category', compact('category'));
+    }
+
+    public function test_add($category_id) {
+        $data["category"] = Category::where("id",$category_id)->get()->toArray()[0];
+        return view("Admin.Test.add_test",$data);
+    }
+
+    public function test_store(Request $request) {
+        $controls = $request->all();
+        $rules = [
+            "category_id"=> "required",
+            "name" =>  "required",
+            "total_options" =>  "required|min:1",
+            "min_marks" =>  "required|min:1",
+            "max_marks" =>  "required|min:1",
+            "negative_marks" =>  "required",
+            "is_trackable" =>  "required",
+            'status' => "required",
+        ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $duration = isset($controls['duration']) ? $controls['duration'] : null;
+            
+            $data = [
+                "name" =>  $controls['name'],
+                "category_id"=> $controls['category_id'],
+                "duration"=> $duration,
+                "max_marks" =>  $controls['max_marks'],
+                "min_marks" =>  $controls['min_marks'],
+                "negative_marks" =>  $controls['negative_marks'],
+                "total_options" =>  $controls['total_options'],
+                "is_trackable" =>  $controls['is_trackable'],
+                'status' => $controls['status'],
+            ];
+            $test = Test::create($data);
+            if($test->id) {
+                return redirect()->route('admin.category', $controls["category_id"])->with(['toast' => 'success', 'msg' => 'Test created successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Test']);
+            }
+        }
+        
+        
+        
+    }
+
+    public function test_edit($id) {
+        $test = Test::find($id)->toArray();
+        return view('Admin.Test.edit_test', compact('test'));
+    }
+
+    public function test_save(Request $request){
+        $controls = $request->all();
+        $rules = [
+            "category_id"=> "required",
+            "name" =>  "required",
+            "total_options" =>  "required|min:1",
+            "min_marks" =>  "required|min:1",
+            "max_marks" =>  "required|min:1",
+            "negative_marks" =>  "required",
+            "is_trackable" =>  "required",
+            'status' => "required",
+        ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $duration = isset($controls['duration']) ? $controls['duration'] : null;
+            
+            $data = [
+                "name" =>  $controls['name'],
+                "category_id"=> $controls['category_id'],
+                "duration"=> $duration,
+                "max_marks" =>  $controls['max_marks'],
+                "min_marks" =>  $controls['min_marks'],
+                "negative_marks" =>  $controls['negative_marks'],
+                "total_options" =>  $controls['total_options'],
+                "is_trackable" =>  $controls['is_trackable'],
+                'status' => $controls['status'],
+            ];
+            $test = Test::where("id",$controls['id'])->update($data);
+            if($test) {
+                return redirect()->route('admin.category', $controls["category_id"])->with(['toast' => 'success', 'msg' => 'Test updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Test']);
+            }
+        }
+    }
+
+    public function question($id){
+        $data["test"] = Test::where("id",$id)->get()->toArray()[0];
+        $data["questions"] = Question::where("test_id",$id)->get()->toArray();
+        return view('Admin.Test.questions', compact('data'));
+
+    }
+
+    public function question_add($test_id) {
+        $data["test"] = Test::where("id",$test_id)->get()->toArray()[0];
+        return view("Admin.Test.add_question",$data);
+    }
+
+    public function question_store(Request $request){
+        $controls = $request->all();
+        $rules = [
+            "test_id"=> "required",
+            "question" =>  "required",
+            "answer" =>  "required",
+            "status" =>  "required",
+        ];
+
+        for($i =1; $i <= $controls['total_options']; $i++){
+            $rules["option".$i] = "required";
+        }
+       
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $explanation = !empty($controls['explanation']) ? $controls['explanation'] : null;
+            for($i =1; $i <= $controls['total_options']; $i++){
+                $options[] = $controls["option".$i];
+            }
+            $option = json_encode($options);
+            $data = [
+                "test_id" => $controls['test_id'],
+                "question" =>  $controls['question'],
+                "option"=> $option,
+                "answer" =>  $controls['answer'],
+                "explanation" =>  $explanation,
+                "status" =>  $controls['status'],
+            ];
+    
+           
+            $test = Question::create($data);
+            if($test->id) {
+                return redirect()->route('admin.question', $controls["test_id"])->with(['toast' => 'success', 'msg' => 'Question created successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Question']);
+            }
+        }
+
+    }
+
+    public function question_edit($id){
+        $data['question'] = Question::find($id)->toArray();
+        $data['test'] = Test::find($data['question']['test_id'])->toArray();
+        
+        return view('Admin.Test.edit_question',$data);
+    }
+
+    public function question_save(Request $request){
+        $controls = $request->all();
+        $rules = [
+            "id"=> "required",
+            "question" =>  "required",
+            "answer" =>  "required",
+            "status" =>  "required",
+        ];
+
+        for($i =1; $i <= $controls['total_options']; $i++){
+            $rules["option".$i] = "required";
+        }
+       
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $explanation = !empty($controls['explanation']) ? $controls['explanation'] : null;
+            for($i =1; $i <= $controls['total_options']; $i++){
+                $options[] = $controls["option".$i];
+            }
+            $option = json_encode($options);
+            $data = [
+                "test_id" => $controls['test_id'],
+                "question" =>  $controls['question'],
+                "option"=> $option,
+                "answer" =>  $controls['answer'],
+                "explanation" =>  $explanation,
+                "status" =>  $controls['status'],
+            ];
+    
+           
+            $question = Question::where("id",$controls['id'])->update($data);
+            if($question) {
+                return redirect()->route('admin.question', $controls["test_id"])->with(['toast' => 'success', 'msg' => 'Question updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Question']);
+            }
+        }
+
+    }
+
+
+
+    // public function attachDepartment(Request $request) {
+    //     $validated = $request->validate([
+    //         'department' => 'required',
+    //         'test_id' => 'required'
+    //     ],$request->all());
+    //     dd($request->all());
+    // }
 }

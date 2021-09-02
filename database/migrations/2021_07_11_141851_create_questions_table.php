@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->integer('test_id');
             $table->string('question');
-            $table->string('option')->nullable();
+            $table->longText('option')->nullable();
             $table->string('answer');
             $table->string('explanation')->nullable();
             $table->integer('status')->default(1);

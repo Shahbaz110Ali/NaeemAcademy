@@ -14,15 +14,15 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
-        DB::table('categories')->insert([[
-            'title' => 'JST/PST'
-        ], [
-            'title' => 'General Test'
-        ], [
-            'title' => 'Departmental Test'
-        ], [
-            'title' => 'Mock Test'
-        ]]);
+        // DB::table('categories')->truncate();
+        // DB::table('categories')->insert([[
+        //     'title' => 'JST/PST'
+        // ], [
+        //     'title' => 'General Test'
+        // ], [
+        //     'title' => 'Departmental Test'
+        // ], [
+        //     'title' => 'Mock Test'
+        // ]]);
     }
 }

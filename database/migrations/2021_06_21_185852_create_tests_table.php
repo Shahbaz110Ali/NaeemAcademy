@@ -15,8 +15,9 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
             $table->integer('category_id')->nullable();
-            $table->string('duration');
+            $table->string('duration')->nullable();
             $table->string('max_marks')->default("100");
             $table->string('min_marks')->default("0");
             $table->string('negative_marks')->default("0");

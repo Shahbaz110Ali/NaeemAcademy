@@ -15,7 +15,23 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('interface/store', [\App\Http\Controllers\Admin\TestController::class, 'interface_store'])->name('admin.interface.store');
     Route::post('interface/save', [\App\Http\Controllers\Admin\TestController::class, 'interface_save'])->name('admin.interface.save');
     Route::get('interface/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'interface_edit'])->name('admin.interface.edit');
-    Route::post('tests/department/store', [App\Http\Controllers\Admin\TestController::class, 'attachDepartment'])->name('admin.tests.department.store');
+
+    Route::get('category/{id}', [App\Http\Controllers\Admin\TestController::class, 'category'])->name('admin.category');
+    Route::get('category/add/{parent_id}', [App\Http\Controllers\Admin\TestController::class, 'category_add'])->name('admin.category.add');
+    Route::post('category/store', [\App\Http\Controllers\Admin\TestController::class, 'category_store'])->name('admin.category.store');
+    Route::post('category/save', [\App\Http\Controllers\Admin\TestController::class, 'category_save'])->name('admin.category.save');
+    Route::get('category/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'category_edit'])->name('admin.category.edit');
+    
+    Route::get('test/add/{category_id}', [App\Http\Controllers\Admin\TestController::class, 'test_add'])->name('admin.test.add');
+    Route::post('test/store', [\App\Http\Controllers\Admin\TestController::class, 'test_store'])->name('admin.test.store');
+    Route::get('test/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'test_edit'])->name('admin.test.edit');
+    Route::post('test/save', [\App\Http\Controllers\Admin\TestController::class, 'test_save'])->name('admin.test.save');
+
+    Route::get('question/{test_id}', [App\Http\Controllers\Admin\TestController::class, 'question'])->name('admin.question');
+    Route::get('question/add/{test_id}', [App\Http\Controllers\Admin\TestController::class, 'question_add'])->name('admin.question.add');
+    Route::post('question/store', [\App\Http\Controllers\Admin\TestController::class, 'question_store'])->name('admin.question.store');
+    Route::get('question/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'question_edit'])->name('admin.question.edit');
+    Route::post('question/save', [\App\Http\Controllers\Admin\TestController::class, 'question_save'])->name('admin.question.save');
     /** /. Test Routes */
 
     /** Subject Routes */

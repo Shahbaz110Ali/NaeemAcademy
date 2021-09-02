@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     protected $fillable = [
+        'name',
         'category_id',
         'duration',
         'max_marks',

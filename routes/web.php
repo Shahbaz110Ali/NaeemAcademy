@@ -21,7 +21,10 @@ Route::get('/courses', [App\Http\Controllers\HomeController::class, 'courses'])-
 Route::get('/trainers', [App\Http\Controllers\HomeController::class, 'trainers'])->name('trainers');
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
-Route::get('/job/{title}', [App\Http\Controllers\HomeController::class, 'viewJob'])->name('job');
+Route::get('/content/{category_id}', [App\Http\Controllers\HomeController::class, 'content'])->name('content');
+Route::get('take/test/{test_id}', [App\Http\Controllers\HomeController::class, 'take_test'])->name('test.take');
+
+
 
 
 
