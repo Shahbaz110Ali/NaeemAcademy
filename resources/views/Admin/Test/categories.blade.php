@@ -97,7 +97,7 @@
                                             <th>Max</th>
                                             <th>Negative</th>
                                             <th>Options</th>
-                                            <th>Trackable</th>
+                                            <th>Type</th>
                                             <th>Status</th>
 
                                             <th class="text-nowrap">Action</th>
@@ -119,7 +119,7 @@
                                             <td>{{$item['max_marks']}}</td>
                                             <td>{{$item['negative_marks']}}</td>
                                             <td>{{$item['total_options']}}</td>
-                                            <td>{{$item['is_trackable']}}</td>
+                                            <td>{{$item['type']}}</td>
                                             <td>
                                                 @if($item['status'] == 1)
                                                 <span class="text-success">Active</span>    

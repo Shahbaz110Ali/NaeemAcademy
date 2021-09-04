@@ -88,13 +88,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Is Trackable</label>
-                                                        <select class="form-control" name="is_trackable">
-                                                            <option value="no" {{ (($test['is_trackable'] === 'no')?"selected":"" ) }}>No</option>
-                                                            <option value="yes" {{ (( $test['is_trackable'] == "yes")?"selected":"" ) }}>Yes</option>
+                                                        <label class="control-label">Type</label>
+                                                        <select class="form-control" name="type">
+                                                            <option value="practice" {{ (($test['type'] === 'practice')?"selected":"" ) }}>Practice</option>
+                                                            <option value="competition" {{ (( $test['type'] == "competition")?"selected":"" ) }}>Competition</option>
                                                             
                                                         </select>
-                                                        @error('is_trackable')
+                                                        @error('type')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>

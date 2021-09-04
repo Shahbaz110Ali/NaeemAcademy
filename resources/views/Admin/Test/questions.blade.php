@@ -72,8 +72,8 @@
                                             <td class="text-nowrap">
                                                 <a href="{{route("admin.question.edit",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                                                     <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                <a href="{{route("admin.question",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
-                                                    <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                {{-- <a href="{{route("admin.question",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
+                                                    <i class="fa fa-eye text-inverse m-r-10"></i> </a> --}}
                                                 <a href="#" data-toggle="tooltip" data-original-title="Close"> <i
                                                         class="fa fa-close text-danger"></i> </a>
                                             </td>

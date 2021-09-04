@@ -150,7 +150,7 @@ class TestController extends Controller
             "min_marks" =>  "required|min:1",
             "max_marks" =>  "required|min:1",
             "negative_marks" =>  "required",
-            "is_trackable" =>  "required",
+            "type" =>  "required",
             'status' => "required",
         ];
         $validator = Validator::make($controls,$rules);
@@ -167,7 +167,7 @@ class TestController extends Controller
                 "min_marks" =>  $controls['min_marks'],
                 "negative_marks" =>  $controls['negative_marks'],
                 "total_options" =>  $controls['total_options'],
-                "is_trackable" =>  $controls['is_trackable'],
+                "type" =>  $controls['type'],
                 'status' => $controls['status'],
             ];
             $test = Test::create($data);
@@ -196,7 +196,7 @@ class TestController extends Controller
             "min_marks" =>  "required|min:1",
             "max_marks" =>  "required|min:1",
             "negative_marks" =>  "required",
-            "is_trackable" =>  "required",
+            "type" =>  "required",
             'status' => "required",
         ];
         $validator = Validator::make($controls,$rules);
@@ -213,7 +213,7 @@ class TestController extends Controller
                 "min_marks" =>  $controls['min_marks'],
                 "negative_marks" =>  $controls['negative_marks'],
                 "total_options" =>  $controls['total_options'],
-                "is_trackable" =>  $controls['is_trackable'],
+                "type" =>  $controls['type'],
                 'status' => $controls['status'],
             ];
             $test = Test::where("id",$controls['id'])->update($data);

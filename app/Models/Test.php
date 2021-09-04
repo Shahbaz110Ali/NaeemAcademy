@@ -15,7 +15,7 @@ class Test extends Model
         'min_marks',
         'negative_marks',
         'total_options',
-        'is_trackable',
+        'type',
         'status',
     ];
     // use Sluggable;

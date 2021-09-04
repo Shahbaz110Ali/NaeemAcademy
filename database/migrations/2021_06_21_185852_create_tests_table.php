@@ -22,7 +22,7 @@ class CreateTestsTable extends Migration
             $table->string('min_marks')->default("0");
             $table->string('negative_marks')->default("0");
             $table->integer('total_options')->default(4);
-            $table->string('is_trackable')->default("no");
+            $table->string('type')->default("practice");
             $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
