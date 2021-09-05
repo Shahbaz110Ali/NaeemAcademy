@@ -11,7 +11,9 @@ Route::get('register', [App\Http\Controllers\User\LoginController::class, 'regis
 Route::post('create', [App\Http\Controllers\User\LoginController::class, 'create'])->name('user.create');
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('user', [App\Http\Controllers\User\UserController::class, 'dashboard'])->name('user');
+    Route::get('/', [App\Http\Controllers\User\UserController::class, 'dashboard'])->name('user');
+    Route::get('tests', [App\Http\Controllers\User\UserController::class, 'taken_tests'])->name('user.takentests');
+    
     /** Test Routes */
     // Route::get('interface', [App\Http\Controllers\Admin\TestController::class, 'interface'])->name('admin.interface');
     // Route::get('interface/add', [App\Http\Controllers\Admin\TestController::class, 'interface_add'])->name('admin.interface.add');
