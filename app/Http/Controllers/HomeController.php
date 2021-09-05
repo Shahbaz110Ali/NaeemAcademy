@@ -39,4 +39,15 @@ class HomeController extends Controller
     public function viewJob(Request $request) {
         return view('job-detail');
     }
+    
+    public function subjectDetails()
+    {
+        return view('subject-details');
+    }
+
+    public function Quiz()
+    {
+        return view('quiz');
+    }
+    
 }
