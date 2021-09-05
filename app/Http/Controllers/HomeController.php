@@ -62,9 +62,10 @@ class HomeController extends Controller
     public function take_test($id){
        
         $data['test'] = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
-        $data['questions'] = Question::where(["test_id"=>$id,"status"=>1])->get()->toArray();
+        $data['questions'] = Question::where(["test_id"=>$id,"status"=>1])->get();
+       
         if($data['test']['type'] == "practice"){
-            return view('test',$data);
+            return view('test', $data);
         }else if($data['test']['type'] == "competition"){
             if(Auth::check()){
                 return view('test',$data);
@@ -74,6 +75,11 @@ class HomeController extends Controller
         }
         // dd($data);
         
+    }
+
+    public function getQuestions($id){
+        return Question::where(["test_id"=>$id,"status"=>1])->get();
+
     }
 
     public function submit_test(Request $request){
