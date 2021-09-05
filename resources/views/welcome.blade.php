@@ -71,29 +71,19 @@
                     data-aos-delay="100">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <img src="assets/img/test_preperations/jst_pst.png" alt="image" style="width:100px;">
-                                    <h4 class="mt-2"><a href="">PST / JEST</a></h4>
-                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip
-                                    </p>
-                                </div>
-                            </div>
+                            @forelse ($interfaces as $item)
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-2 mt-xl-0">
                                     <img src="assets/img/test_preperations/jst_pst.png" alt="image" style="width:100px;">
-                                    <h4 class="mt-2"><a href="{{ route('job', urlencode('General Recruiement Test')) }}">General Recruitment Test</a></h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    </p>
+                                    <h4 class="mt-2"><a href="{{ route('content', $item['id']) }}">{{$item['title']}}</a></h4>
+                                    <p>{{$item['description']}}</p>
                                 </div>
                             </div>
-                            <div class="col-xl-4 d-flex align-items-stretch">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <img src="assets/img/test_preperations/jst_pst.png" alt="image" style="width:100px;">
-                                    <h4 class="mt-2"><a href="">Mock Tests</a></h4>
-                                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                                </div>
-                            </div>
+                            @empty
+                           
+                            @endforelse
+                            
+                            
                         </div>
                     </div><!-- End .content-->
                 </div>

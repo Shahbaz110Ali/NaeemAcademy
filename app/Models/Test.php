@@ -7,28 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    use Sluggable;
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'category_id',
+        'duration',
+        'max_marks',
+        'min_marks',
+        'negative_marks',
+        'total_options',
+        'type',
+        'status',
+    ];
+    // use Sluggable;
+    // protected $guarded = [];
 
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+    // public function sluggable()
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => 'title'
+    //         ]
+    //     ];
+    // }
+
+    // public function getLink()
+    // {
+    //     return url('test/' . $this->slug);
+    // }
+
+    public function categories() {
+        return $this->belongsTo("App\Models\Category");
     }
 
-    public function getLink()
-    {
-        return url('test/' . $this->slug);
+    public function track_tests() {
+        return $this->hasMany("App\Models\TrackTest","test_id","id");
     }
 
-    public function status() {
-        return $this->belongsTo(Status::class);
-    }
-
-    public function department() {
-        return $this->hasMany(Department::class);
+    public function questions() {
+        return $this->hasMany("App\Models\Question","test_id","id");
     }
 }

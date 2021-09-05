@@ -18,6 +18,10 @@ class Authenticate extends Middleware
             if ($request->route()->action['prefix'] == "admin") {
                 return route('admin.login');
             }
+
+            if ($request->route()->action['prefix'] == "user") {
+                return route('user.login');
+            }
             return abort(401);
         }
     }

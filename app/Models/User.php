@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contact',
+        'status',
     ];
 
     /**
@@ -40,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function track_tests() {
+        return $this->hasMany('App\Models\TrackTest', 'user_id','id');
+    }
+
+    
 }
