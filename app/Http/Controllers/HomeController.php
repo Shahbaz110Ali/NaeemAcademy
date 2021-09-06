@@ -14,6 +14,8 @@ use App\Models\Category;
 use App\Models\Test;
 use App\Models\Question;
 use App\Models\TrackTest;
+use App\Models\TestUser;
+use App\Models\TestUserQuestion;
 
 class HomeController extends Controller
 {
@@ -114,7 +116,7 @@ class HomeController extends Controller
     public function submit_test(Request $request){
         $controls = $request->all();
         if(Auth::check()){
-            $submitted = TrackTest::where(["test_id"=>$controls['test_id'],"user_id"=>Auth::user()->id])->get()->toArray();
+            $submitted = TestUser::where(["test_id"=>$controls['test_id'],"user_id"=>Auth::user()->id])->get()->toArray();
             if(!empty($submitted)){
                 return redirect()->back()->with("info",['class'=>"text-danger","msg"=>"you have already submitted this test"]);
             }
@@ -141,6 +143,14 @@ class HomeController extends Controller
         $plus = 0;
         $minus = 0;
 
+        if(Auth::check()){
+            $data = [
+                'user_id' => Auth::user()->id,
+                'test_id' => $controls['test_id'],
+            ];
+            $test_user = TestUser::create($data);
+        }
+
         foreach($user_attempt as $q_id=>$op){
             $q = Question::where("id",$q_id)->get()->toArray()[0];
             if($q['answer'] == "option".$op){
@@ -155,13 +165,13 @@ class HomeController extends Controller
                 if(Auth::check()){
                     $user = Auth::user();
                     $data = [
-                        'user_id' => $user->id,
-                        'test_id' => $controls['test_id'],
-                        'question_id' => $q_id,
-                        'answer' => "option".$op,
-                        'status' => 1,
+                        'test_user_id'=>$test_user->id,
+                        'question_id'=>$q_id,
+                        'answer'=>"option".$op,
                     ];
-                    TrackTest::create($data);
+                    TestUserQuestion::create();
+                    
+
                 }
                 
             }

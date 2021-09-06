@@ -47,4 +47,9 @@ class Test extends Model
     public function questions() {
         return $this->hasMany("App\Models\Question","test_id","id");
     }
+
+    public function users()
+    {
+        return $this->belongsToMany("App\Models\User","test_users");
+    }
 }

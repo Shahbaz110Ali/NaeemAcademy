@@ -48,5 +48,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\TrackTest', 'user_id','id');
     }
 
+    public function tests()
+    {
+        return $this->belongsToMany("App\Models\Test","track_tests");
+    }
+
     
 }
