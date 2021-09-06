@@ -77,9 +77,38 @@ class HomeController extends Controller
         
     }
 
-    public function getQuestions($id){
-        return Question::where(["test_id"=>$id,"status"=>1])->get();
+    public function review_test($id){
+       
+        $data['test'] = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
+        $data['questions'] = Question::where(["test_id"=>$id,"status"=>1])->get();
+        if(Session::has("submitted_test")){
+            $data['user_attempt'] = json_encode(Session::get("submitted_test")['test_info']['user_attempt']);
+        }else{
+            $data['user_attempt'] = json_encode("user attempt array from db");
+        }
+    //    dd($data);
+        if($data['test']['type'] == "practice"){
+            return view('review_test', $data);
+        }else if($data['test']['type'] == "competition"){
+            if(Auth::check()){
+                return view('review_test',$data);
+            }else{
+                return redirect(route("user.signin"));
+            }
+        }
+        // dd($data);
+        
+    }
 
+    public function getQuestions($id){
+
+        $questions  = Question::where(["test_id"=>$id,"status"=>1])->get();
+        if(!empty($questions)){
+            foreach($questions as $key=>$question){
+                $questions[$key]['sr'] = $key+1;
+            }
+        }
+        return $questions;
     }
 
     public function submit_test(Request $request){
@@ -92,6 +121,7 @@ class HomeController extends Controller
         }
         
         $user_attempt = isset($controls['question']) ? $controls['question'] : array();
+        
         
         $test = Test::where("id",$controls['test_id'])->get()->toArray()[0];
         $questions = Question::where(["test_id"=>$controls['test_id'],"status"=>1])->get()->toArray();
@@ -141,6 +171,7 @@ class HomeController extends Controller
         $percentage = (($ob_marks / $max) * 100);
 
         $data['test_info'] = [
+            "test_id"=>$controls['test_id'],
             'min'=>$min,
             'max'=>$max,
             'negative'=>$negative,
@@ -154,11 +185,13 @@ class HomeController extends Controller
             "minus_marks"=>$minus,
             'ob_marks'=>$ob_marks,
             'percentage'=>$percentage,
+            'user_attempt'=>$user_attempt
 
         ];
         $data['test'] = $test;
         Session::put("submitted_test",$data);
-        return redirect(route("test.result"));
+        return redirect(route("test.review",$controls['test_id']));
+        // return redirect(route("test.result"));
     }
 
     public function result_test(){

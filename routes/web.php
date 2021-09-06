@@ -25,6 +25,7 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 
 Route::get('content/{category_id}', [App\Http\Controllers\HomeController::class, 'content'])->name('content');
 Route::get('take/test/{test_id}', [App\Http\Controllers\HomeController::class, 'take_test'])->name('test.take');
+Route::get('review/test/{test_id}', [App\Http\Controllers\HomeController::class, 'review_test'])->name('test.review');
 Route::get('get-questions/{test_id}', [App\Http\Controllers\HomeController::class, 'getQuestions'])->name('getQuestions');
 
 

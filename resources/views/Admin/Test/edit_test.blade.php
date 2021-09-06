@@ -19,7 +19,7 @@
                                             <h6 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Test details</h6>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Name</label>
                                                         <input type="text" class="form-control" name="name"
@@ -31,13 +31,25 @@
                                                     </div>
                                                     
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Options</label>
                                                         <input type="number" value="4" class="form-control" name="total_options"
                                                             placeholder="Total Options"
                                                             value="{{ $test['total_options'] }}">
                                                         @error('total_options')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Question Per Page</label>
+                                                        <input type="number"  class="form-control" name="q_per_page"
+                                                            placeholder="Total question per page"
+                                                            value="{{ $test['question_per_page'] }}">
+                                                        @error('q_per_page')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -132,9 +144,9 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Duration in sec</label>
+                                                        <label class="control-label">Duration in minutes</label>
                                                         <input {{$duration_disable}}  type="number" class="form-control" id="duration" name="duration"
-                                                            placeholder="duration in seconds"
+                                                            placeholder="duration in minutes"
                                                             value="{{ $test['duration'] }}">
                                                         @error('duration')
                                                             <span class="text-danger">{{ $message }}</span>

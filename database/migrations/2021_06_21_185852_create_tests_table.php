@@ -22,6 +22,7 @@ class CreateTestsTable extends Migration
             $table->string('min_marks')->default("0");
             $table->string('negative_marks')->default("0");
             $table->integer('total_options')->default(4);
+            $table->integer('question_per_page')->default(1);
             $table->string('type')->default("practice");
             $table->integer('status')->default(1);
             $table->timestamps();

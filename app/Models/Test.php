@@ -15,6 +15,7 @@ class Test extends Model
         'min_marks',
         'negative_marks',
         'total_options',
+        'question_per_page',
         'type',
         'status',
     ];
