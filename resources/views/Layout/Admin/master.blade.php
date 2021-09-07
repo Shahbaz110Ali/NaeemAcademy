@@ -213,29 +213,16 @@
                         </li>
                        
                         <li>
-                            <a href="{{ route('admin.jst-pst.subjects') }}">Subjects</a>
+                            <a href="{{ route('admin.competitions') }}">Competitions</a>
                         </li>
-                        <li>
-                            <a  href="{{ route('admin.jst-pst.tests') }}">Tests</a>
-                        </li>
-                        <li>
-                            <a href="index3.html">Project</a>
-                        </li>
-                        <li>
-                            <a href="index4.html">Classic</a>
-                        </li>
-                    </ul>
+                        
+                                            </ul>
                 </li>
                 <li>
                     <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>Mock Test</a>
                 </li>
                 
-                <li>
-                    <a href="{{ route('admin.subjects') }}"><i class="icon-book-open mr-10"></i>Subjects</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.departments') }}"><i class="icon-list mr-10"></i>Departments</a>
-                </li>
+               
             </ul>
         </div>
         <!-- /Left Sidebar Menu -->

@@ -39,13 +39,13 @@
                     <div class="col-lg-12">
                         <form action="{{ route('test.submit') }}" method="POST" id="testSubmit">
                             @csrf
-                            <input type="hidden" name="test_id" value="{{$test['id']}}">
+                            <input type="hidden" class="btn btn-success" name="test_id" value="{{$test['id']}}">
                         <table class="table">
                             <thead > 
                                 <tr>
                                     <th>
                                         
-                                        
+                                        <a href="{{route('test.result')}}">Complete Result Summary</a>
                                     </th>
                                 </tr>
                             </thead>

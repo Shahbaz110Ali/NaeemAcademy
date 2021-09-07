@@ -86,9 +86,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        @if ($test['duration'] == 0 || $test['duration'] == null)
+                                        {{-- @if ($test['duration'] == 0 || $test['duration'] == null)
                                         <button type="submit" class="get-started-btn">Submit Test</button>
-                                        @endif
+                                        @endif --}}
+                                        <button type="submit" class="get-started-btn">Submit Test</button>
                                     </td>
                                 </tr>
                             </tfoot>
