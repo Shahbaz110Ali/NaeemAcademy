@@ -1,3 +1,4 @@
+{{-- {{dd($user_attempt)}} --}}
 @extends('Layout.app')
 
 @section('links')
@@ -15,7 +16,7 @@
         <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">
-                <h2>{{$test['name']}}</h2>
+                <h2>Review for {{$test['name']}}</h2>
                 <div>@php
                     if(Session::has("info")){
                         echo "<span class='".Session::get("info")['class']."'>".Session::get("info")['msg']."</span>";
@@ -38,23 +39,18 @@
                     <div class="col-lg-12">
                         <form action="{{ route('test.submit') }}" method="POST" id="testSubmit">
                             @csrf
-                            <input type="hidden" name="test_id" value="{{$test['id']}}">
+                            <input type="hidden" class="btn btn-success" name="test_id" value="{{$test['id']}}">
                         <table class="table">
                             <thead > 
                                 <tr>
                                     <th>
-                                        @if ($test['duration'] > 0)
-                                        Time: <span class="countdown">00:00</span>
-                                        <span id="span-start">
-                                            <button type="button" id="startTest" class="get-started-btn">Start Test</button>
-                                        </span>
-                                        @endif
                                         
+                                        <a href="{{route('test.result')}}">Complete Result Summary</a>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody  id="data-container">
-                                @php
+                                <!-- @php
                                     $count = 0;
                                 @endphp
                                 @forelse ($questions as $item)
@@ -76,22 +72,14 @@
                                 @empty
                                     <h6>Empty</h6>
                                 
-                                @endforelse
+                                @endforelse -->
                                
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td></td>
-                                {{-- <td><div id="pagination-container"></div></td> --}}
+                                <td><div id="pagination-container"></div></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        {{-- @if ($test['duration'] == 0 || $test['duration'] == null)
-                                        <button type="submit" class="get-started-btn">Submit Test</button>
-                                        @endif --}}
-                                        <button type="submit" class="get-started-btn">Submit Test</button>
-                                    </td>
-                                </tr>
+                               
                             </tfoot>
 
                             
@@ -147,52 +135,39 @@ $(document).ready(function() {
     var table = $('.apply-dt').DataTable();
 } );
 
-// let current_question = null;
-$("#startTest").click(function() {
-    countDown();
-    $("#span-start").remove();
-    // $("#instructions").toggleClass('d-none');
-    // $("#quiz").toggleClass('d-none');
-});
 
-function countDown() {
-    var timer2 = "{{$test['duration']}}:0";
-    var interval = setInterval(function() {
-        var timer = timer2.split(':');
-        var minutes = parseInt(timer[0], 10);
-        var seconds = parseInt(timer[1], 10);
-        --seconds;
-        minutes = (seconds < 0) ? --minutes : minutes;
-        if (minutes < 0) {
-            $("#testSubmit").submit();
-            clearInterval(interval)
-        };
-        seconds = (seconds < 0) ? 59 : seconds;
-        seconds = (seconds < 10) ? '0' + seconds : seconds;
-        
-        if(minutes == 0 && seconds == 0){
-            $('.countdown').remove();
-        }else{
-            $('.countdown').html(minutes + ':' + seconds);
-        }
-        
-        
-        
-        timer2 = minutes + ':' + seconds;
-    }, 1000);
-}
 function simpleTemplating(data) {
     var html = '<tr><td>';
-    
+        var user_attempt = "{{$user_attempt}}";
+        user_attempt = JSON.parse(user_attempt.replace(/&quot;/g,'"'));
+        // console.log(user_attempt[5]);
     $.each(data, function(index, item){     
         html += '<div class="">';
         html += ' <h3>Question '+item.sr+' :-</h3>';
         html += '<p><b>'+item.question+'</b></p>';
-        $.each(JSON.parse(item.option), function(i, option){ 
-            var op = (i+1);
+        
+        
+        
+        $.each(JSON.parse(item.option), function(i, option){
+            var op = (i+1)
+            var textcolor = "";
+            var checked = "";
+            
+            
+            if(user_attempt[item.id] == op){
+                textcolor = "text-danger";
+                checked = "checked";
+            }
+
+            if(item.answer == "option"+op){
+                textcolor  = "text-success";
+            }
+            
+            
+            
             html += '<div class="form-check">';
-            html += '<input class="form-check-input" type="radio" name="question['+item.id+']" id="question_'+item.sr+'_option_'+ op+'" value="'+op+'">';
-            html += '<label class="form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</label>';
+            html += '<input disabled '+checked+' class="form-check-input" type="radio" name="question['+item.id+']" id="question_'+item.sr+'_option_'+ op+'" value="'+op+'">';
+            html += '<label class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</label>';
             html += '</div>';
          });
          html += '</div>';

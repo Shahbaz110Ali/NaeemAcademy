@@ -147,6 +147,7 @@ class TestController extends Controller
             "category_id"=> "required",
             "name" =>  "required",
             "total_options" =>  "required|min:1",
+            'q_per_page'=> 'required',
             "min_marks" =>  "required|min:1",
             "max_marks" =>  "required|min:1",
             "negative_marks" =>  "required",
@@ -167,6 +168,7 @@ class TestController extends Controller
                 "min_marks" =>  $controls['min_marks'],
                 "negative_marks" =>  $controls['negative_marks'],
                 "total_options" =>  $controls['total_options'],
+                "question_per_page"=>$controls['q_per_page'],
                 "type" =>  $controls['type'],
                 'status' => $controls['status'],
             ];
@@ -193,6 +195,7 @@ class TestController extends Controller
             "category_id"=> "required",
             "name" =>  "required",
             "total_options" =>  "required|min:1",
+            "q_per_page"=>"required",
             "min_marks" =>  "required|min:1",
             "max_marks" =>  "required|min:1",
             "negative_marks" =>  "required",
@@ -213,6 +216,7 @@ class TestController extends Controller
                 "min_marks" =>  $controls['min_marks'],
                 "negative_marks" =>  $controls['negative_marks'],
                 "total_options" =>  $controls['total_options'],
+                "question_per_page"=>$controls['q_per_page'],
                 "type" =>  $controls['type'],
                 'status' => $controls['status'],
             ];

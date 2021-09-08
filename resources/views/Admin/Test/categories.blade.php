@@ -97,6 +97,7 @@
                                             <th>Max</th>
                                             <th>Negative</th>
                                             <th>Options</th>
+                                            <th>Q/Page</th>
                                             <th>Type</th>
                                             <th>Status</th>
 
@@ -119,6 +120,7 @@
                                             <td>{{$item['max_marks']}}</td>
                                             <td>{{$item['negative_marks']}}</td>
                                             <td>{{$item['total_options']}}</td>
+                                            <td>{{$item['question_per_page']}}</td>
                                             <td>{{$item['type']}}</td>
                                             <td>
                                                 @if($item['status'] == 1)

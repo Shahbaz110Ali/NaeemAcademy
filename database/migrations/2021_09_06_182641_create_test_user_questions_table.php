@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegisteredSubjectsTable extends Migration
+class CreateTestUserQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRegisteredSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('registered_subjects', function (Blueprint $table) {
+        Schema::create('test_user_questions', function (Blueprint $table) {
             $table->id();
-            $table->integer('subject_id');
-            $table->integer('category_id');
-            $table->integer('department_id')->nullable();
+            $table->unsignedBigInteger('test_user_id')->nullable();
+            $table->unsignedBigInteger('question_id')->nullable();
+            $table->string('answer')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRegisteredSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registered_subjects');
+        Schema::dropIfExists('test_user_questions');
     }
 }

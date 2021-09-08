@@ -64,7 +64,7 @@
 															</div>
 															<div class="form-group mb-0">
 																<span class="inline-block pr-5">Don't have an account?</span>
-																<a class="inline-block txt-danger" href="signup-page.html">Sign Up</a>
+																<a class="inline-block txt-danger" href="{{route('user.register')}}">Sign Up</a>
 															</div>	
 														</form>
 													</div>

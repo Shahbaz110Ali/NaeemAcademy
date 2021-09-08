@@ -14,11 +14,11 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->truncate();
-        DB::table('statuses')->insert([[
-            'title' => 'Inactive',
-        ], [
-            'title' => 'Active'
-        ]]);
+        // DB::table('statuses')->truncate();
+        // DB::table('statuses')->insert([[
+        //     'title' => 'Inactive',
+        // ], [
+        //     'title' => 'Active'
+        // ]]);
     }
 }

@@ -1,1 +1,1 @@
-@extends("Layout.Admin.master")
+@extends("Layout.User.master")

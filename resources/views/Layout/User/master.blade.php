@@ -196,33 +196,21 @@
         <div class="fixed-sidebar-left">
             <ul class="nav navbar-nav side-nav nicescroll-bar">
                 <li>
-                    <a href="{{ route('admin') }}"><i class="icon-picture mr-10"></i>Dashboard</a>
+                    <a href="{{ route('user') }}"><i class="icon-picture mr-10"></i>Dashboard</a>
                 </li>
+                
                 <li>
-                    <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>General Recruitment</a>
-                </li>
-                <li>
-                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>Manage Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>My Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
                     <ul id="dashboard_dr" class="collapse collapse-level-1">
                         
                         <li>
-                            <a href="{{ route('admin.interface.add') }}">Create New Interface</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.interface') }}">Manage Interfaces</a>
-                        </li>
-                       
-                        <li>
-                            <a href="{{ route('admin.competitions') }}">Competitions</a>
+                            <a href="{{ route('user.takentests') }}">Attempted Tests</a>
                         </li>
                         
-                                            </ul>
-                </li>
-                <li>
-                    <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>Mock Test</a>
+                    </ul>
                 </li>
                 
-               
+                
             </ul>
         </div>
         <!-- /Left Sidebar Menu -->
