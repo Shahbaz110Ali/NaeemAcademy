@@ -204,9 +204,9 @@ $.ajax({
             $('#pagination-container').pagination({
                 dataSource: questions,
                 pageSize: 1,
+                className: 'paginationjs-theme-green',
                 callback: function(data, pagination) {
                     console.log(pagination);
-                    // template method of yourself
                     var html = simpleTemplating(data);
                     $('#data-container').html(html);
                 }
