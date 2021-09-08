@@ -42,7 +42,7 @@
                                         @forelse ($data['questions'] as $item)
                                         <tr>
                                             <td>{{$count}}</td>
-                                            <td>{{$item['question']}}</td>
+                                            <td>{!! $item['question'] !!}</td>
                                             <td>
                                                 @php
                                                 $seq = "a";
@@ -58,7 +58,7 @@
                                                 @if (empty($item['explanation']))
                                                 -
                                                 @else
-                                                {{$item['explanation']}}    
+                                                {!! $item['explanation'] !!}    
                                                 @endif
                                             </td>
                                            

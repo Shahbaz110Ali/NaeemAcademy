@@ -21,6 +21,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+
         $data['interfaces'] = Category::where(["parent_id"=>null,"status"=>"1"])->get()->toArray();
 
         return view('welcome',$data);
@@ -55,7 +56,7 @@ class HomeController extends Controller
         // $id = base64_decode($id);
         $data['parent'] = Category::where("id",$id)->get()->toArray()[0];
         $data['categories'] = Category::where("parent_id",$id)->get()->toArray();
-        $data['tests'] = Test::where("category_id",$id)->get()->toArray();
+        $data['tests'] = Test::where(["category_id"=>$id,"type"=>"practice"])->get()->toArray();
         // dd($tests);
 
         return view('content',$data);
@@ -90,11 +91,11 @@ class HomeController extends Controller
                 foreach($user_attempt as $key=>$val){
                     $data['user_attempt'][$val['question_id']] = str_replace("option", "", $val['answer']);
                 }
-                
                 $data['user_attempt'] = json_encode($data['user_attempt']);
+                
 
                  //==============
-            $user_attempt = TestUserQuestion::where("test_user_id",$val['id'])->get()->toArray();
+            $user_attempt = TestUserQuestion::where("test_user_id",$test_user['id'])->get()->toArray();
             $questions = Question::where(["test_id"=>$data['test']['id'],"status"=>1])->get()->toArray();
             
             $min = $data['test']['min_marks'];
@@ -114,7 +115,7 @@ class HomeController extends Controller
 
             foreach($user_attempt as $q_id=>$op){
                 $q = Question::where("id",$op['question_id'])->get()->toArray()[0];
-                if($q['answer'] == "option".$op['answer']){
+                if($q['answer'] == $op['answer']){
                     $correct++;
                     $plus = ($plus + $marks_per_q);
                 }else{
@@ -139,8 +140,8 @@ class HomeController extends Controller
                 'wrong'=>$wrong,
                 "plus_marks"=>$plus,
                 "minus_marks"=>$minus,
-                'ob_marks'=>$ob_marks,
-                'percentage'=>$percentage,
+                'ob_marks'=>round($ob_marks,2),
+                'percentage'=>round($percentage,2),
                 
             ];
             $sess['test'] = $data['test'];

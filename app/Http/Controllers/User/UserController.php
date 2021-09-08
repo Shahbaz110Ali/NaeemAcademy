@@ -24,6 +24,30 @@ class UserController extends Controller
         return view("user.dashboard",$data);
     }
 
+    public function available_tests(){
+        $data['user'] = Auth::user()->toArray();
+        $data['tests'] = array();
+        $tests = Test::where(["type"=>"competition","status"=>1])->get()->toArray();
+        if(!empty($tests)){
+            foreach($tests as $key=>$val){
+                $test_taken = TestUser::where(["test_id"=>$val['id'],"user_id"=>$data['user']['id']])->get()->toArray();
+                if(empty($test_taken)){
+                    $data['tests'][$key] =   $val;
+                    $cat_id = $data['tests'][$key]['category_id'];
+                    while($cat_id != null){
+                        $cat = Category::where("id",$cat_id)->get()->ToArray()[0];
+                        $data['tests'][$key]['category'][$cat['id']] = $cat['title'];
+                        $cat_id = $cat['parent_id'];
+                    }
+                }
+            }
+        }
+
+        // dd($data);
+        return view("user.available_tests",$data);
+
+    }
+
     public function taken_tests(){
         $data['user'] = Auth::user()->toArray();
         $data['tests'] = array();

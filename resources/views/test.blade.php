@@ -6,6 +6,13 @@
 <link rel="stylesheet" href="{{asset('assets/dt/buttons.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/dt/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@if ($test['duration'] != null && $test['duration'] > 0)
+    <style>
+        .data-container{
+            display: none;
+        }
+    </style>
+@endif
 @endsection
 
 @section('content')
@@ -49,11 +56,10 @@
                                             <button type="button" id="startTest" class="get-started-btn">Start Test</button>
                                         </span>
                                         @endif
-                                        
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody  id="data-container">
+                            <tbody  class="data-container">
                                 @php
                                     $count = 0;
                                 @endphp
@@ -61,14 +67,14 @@
                                 <tr><td>
                                 <div class="">
                                     <h3>Question {{ ++$count }} :-</h3>
-                                    <p><b>{{$item['question']}}</b></p>
+                                    <p><b>{!! $item['question'] !!}</b></p>
                                     @php
                                         $options = json_decode($item['option']);
                                     @endphp
                                     @for ($i = 1; $i <= count($options); $i++)
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="question[{{$item['id']}}]" id="question_{{ $count }}_option_{{ $i }}" value="{{$i}}">
-                                            <label class="form-check-label" for="question_{{ $count }}_option_{{ $i }}">{{$options[$i-1]}}</label>
+                                            <label class="form-check-label" for="question_{{ $count }}_option_{{ $i }}">{!! $options[$i-1] !!}</label>
                                         </div>
                                     @endfor  
                                 </div>
@@ -84,12 +90,15 @@
                                     <td></td>
                                 {{-- <td><div id="pagination-container"></div></td> --}}
                                 </tr>
-                                <tr>
+                                <tr class="data-container">
                                     <td>
                                         {{-- @if ($test['duration'] == 0 || $test['duration'] == null)
                                         <button type="submit" class="get-started-btn">Submit Test</button>
                                         @endif --}}
-                                        <button type="submit" class="get-started-btn">Submit Test</button>
+                                      
+                                            <button type="submit" class="get-started-btn">Submit Test</button>
+                                        
+                                        
                                     </td>
                                 </tr>
                             </tfoot>
@@ -148,7 +157,10 @@ $(document).ready(function() {
 } );
 
 // let current_question = null;
+
+
 $("#startTest").click(function() {
+    $(".data-container").show();
     countDown();
     $("#span-start").remove();
     // $("#instructions").toggleClass('d-none');
