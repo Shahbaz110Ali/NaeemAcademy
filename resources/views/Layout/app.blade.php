@@ -45,18 +45,18 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="index.html">N Academy</a></h1>
+            <h1 class="logo me-auto"><a href="/">Naeem Academy</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="active" href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="{{ route('courses') }}">Courses</a></li>
-                    <li><a href="{{ route('trainers') }}">Trainers</a></li>
-                    <li><a href="{{ route('pricing') }}">Pricing</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li><a class="{{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                    <li><a class="{{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+                    <li><a class="{{ (request()->is('courses')) ? 'active' : '' }}" href="{{ route('courses') }}">Courses</a></li>
+                    <li><a class="{{ (request()->is('trainers')) ? 'active' : '' }}" href="{{ route('trainers') }}">Trainers</a></li>
+                    <li><a class="{{ (request()->is('pricing')) ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
+                    <li><a class="{{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -135,9 +135,9 @@
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="https://www.facebook.com/Naeemullah-mahar-103324271141823" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.youtube.com/channel/UChVOVRMSrwXlT6ajTDIFbOg" class="youtube"><i class="bx bxl-youtube"></i></a>
+                <a href="https://wa.me/923154550431" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>

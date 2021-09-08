@@ -14,14 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 Route::get('/courses', [App\Http\Controllers\HomeController::class, 'courses'])->name('courses');
-
 Route::get('/trainers', [App\Http\Controllers\HomeController::class, 'trainers'])->name('trainers');
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
-Route::get('/job/{title}', [App\Http\Controllers\HomeController::class, 'viewJob'])->name('job');
+
+Route::get('content/{category_id}', [App\Http\Controllers\HomeController::class, 'content'])->name('content');
+Route::get('take/test/{test_id}', [App\Http\Controllers\HomeController::class, 'take_test'])->name('test.take');
+Route::get('review/test/{test_id}', [App\Http\Controllers\HomeController::class, 'review_test'])->name('test.review');
+Route::get('get-questions/{test_id}', [App\Http\Controllers\HomeController::class, 'getQuestions'])->name('getQuestions');
+
+
+Route::post('test/submit', [App\Http\Controllers\HomeController::class, 'submit_test'])->name('test.submit');
+Route::get('test/result', [App\Http\Controllers\HomeController::class, 'result_test'])->name('test.result');
+
+
 
 
 
