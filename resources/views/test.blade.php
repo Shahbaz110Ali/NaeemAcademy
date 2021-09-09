@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{asset('assets/dt/buttons.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/dt/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @if ($test['duration'] != null && $test['duration'] > 0)
     <style>
         .data-container{
@@ -43,29 +44,23 @@
                 <div class="row">
                    
                     <div class="col-lg-12">
+                        
                         <form action="{{ route('test.submit') }}" method="POST" id="testSubmit">
                             @csrf
                             <input type="hidden" name="test_id" value="{{$test['id']}}">
-                        <table class="table">
-                            <thead > 
-                                <tr>
-                                    <th>
-                                        @if ($test['duration'] > 0)
+                            @if ($test['duration'] > 0)
                                         Time: <span class="countdown">00:00</span>
                                         <span id="span-start">
                                             <button type="button" id="startTest" class="get-started-btn">Start Test</button>
                                         </span>
                                         @endif
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody  class="data-container">
+                            <div id="loop">
                                 @php
                                     $count = 0;
                                 @endphp
                                 @forelse ($questions as $item)
-                                <tr><td>
-                                <div class="">
+                                
+                                <div class="list-group">
                                     <h3>Question {{ ++$count }} :-</h3>
                                     <p><b>{!! $item['question'] !!}</b></p>
                                     @php
@@ -78,35 +73,30 @@
                                         </div>
                                     @endfor  
                                 </div>
-                                </td></tr>
+                                
                                 @empty
                                     <h6>Empty</h6>
                                 
                                 @endforelse
-                               
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td></td>
-                                {{-- <td><div id="pagination-container"></div></td> --}}
-                                </tr>
-                                <tr class="data-container">
-                                    <td>
-                                        {{-- @if ($test['duration'] == 0 || $test['duration'] == null)
-                                        <button type="submit" class="get-started-btn">Submit Test</button>
-                                        @endif --}}
+                            </div>
+                            <div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                      <li>
+                                        {{-- <a href="javascript:void(0)" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a> --}}
+                                      </li>
+                                       
+                                     
                                       
-                                            <button type="submit" class="get-started-btn">Submit Test</button>
-                                        
-                                        
-                                    </td>
-                                </tr>
-                            </tfoot>
+                                    </ul>
+                                  </nav>
+                            </div>
+                            <div>
+                                <button type="submit" class="get-started-btn">Submit Test</button>
+                            </div>
 
-                            
-                        </table>
-                        
-                        
                         </form>
 
                     </div>
@@ -227,17 +217,56 @@ $.ajax({
                 dataSource: questions,
                 pageSize: "{{$test['question_per_page']}}",
                 callback: function(data, pagination) {
-                    // console.log(data);
+                    console.log(pagination);
                     // template method of yourself
                     var html = simpleTemplating(data);
                     $('#data-container').html(html);
+                    $("div.paginationjs").show()
+                    
                 }
             });
 
         }
     });
 
+
+$(document).ready(function(){
+    var numberOfItems = $("#loop .list-group").length
+    var limitPerPage = "{{$test['question_per_page']}}";
+    $("#loop .list-group:gt("+(limitPerPage-1)+")").hide();
+    var totalpages = Math.round(numberOfItems / limitPerPage);
+    $(".pagination").append("<li class='current-page active'><a href='javascript:void(0)'>"+1+"</a></li>");
+
+    for(var i = 2; i <= totalpages; i++){
+        $(".pagination").append("<li class='current-page'><a href='javascript:void(0)'>"+i+"</a></li>");
+    }
+
+
+    // $(".pagination").append("<li><a href='javascript:void(0)' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
+    
+    $(".pagination li.current-page").on("click",function(){
+        if($(this).hasClass("active")){
+            return false;
+        }else{
+            var currentPage = $(this).index();
+            $(".pagination li").removeClass("active");
+            $(this).addClass("active");
+            $("#loop .list-group").hide();
+
+            var grandTotal = limitPerPage * currentPage;
+
+            for(var i = (grandTotal - limitPerPage) ; i < grandTotal ; i++ ){
+                $("#loop .list-group:eq("+i+")").show();
+            }
+        }
+        
+        
+    })
+});
+
  </script>
+ 
+ 
 
 
     

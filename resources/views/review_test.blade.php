@@ -189,7 +189,7 @@ $.ajax({
         success: function (questions) {
             $('#pagination-container').pagination({
                 dataSource: questions,
-                pageSize: "50",
+                pageSize: "{{$test['question_per_page']}}",
                 callback: function(data, pagination) {
                     // console.log(data);
                     // template method of yourself
