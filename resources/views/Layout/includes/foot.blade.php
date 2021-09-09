@@ -9,6 +9,12 @@
 <script src="{{ asset('Kenny/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js') }}"></script>
 <script src="{{ asset('Kenny/dist/js/toast-data.js') }}"></script>
 
+<!-- Tinymce JavaScript -->
+<script src="{{asset('Kenny/vendors/bower_components/tinymce/tinymce.min.js')}}"></script>
+			
+<!-- Tinymce Wysuhtml5 Init JavaScript -->
+<script src="{{asset('Kenny/dist/js/tinymce-data.js')}}"></script>
+
 <!-- Slimscroll JavaScript -->
 <script src="{{ asset('Kenny/dist/js/jquery.slimscroll.js') }}"></script>
 <!-- Fancy Dropdown JS -->

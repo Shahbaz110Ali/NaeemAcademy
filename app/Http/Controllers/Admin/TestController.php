@@ -136,6 +136,28 @@ class TestController extends Controller
         return view('Admin.Test.edit_category', compact('category'));
     }
 
+    public function category_delete($id){
+        $categories = Category::with("children")->Where("id",$id)->get()->toArray();
+        function buildTree(array $elements) {
+            foreach ($elements as $element) {
+                if (!empty($element['children'])) {        
+                    buildTree($element['children']);
+                }
+                $tests= Test::where("category_id",$element['id'])->get()->toArray();
+                foreach($tests as $test){
+                    Test::where("id",$test['id'])->delete();
+                    Question::where("test_id",$test['id'])->delete();
+                }
+                Category::where("id",$element['id'])->delete();
+            }
+        }
+        
+        buildTree($categories);
+        
+        return redirect()->back()->with(['toast' => 'success', 'msg' => 'Category Deleted successfully']);
+
+    }
+
     public function test_add($category_id) {
         $data["category"] = Category::where("id",$category_id)->get()->toArray()[0];
         return view("Admin.Test.add_test",$data);
@@ -227,6 +249,19 @@ class TestController extends Controller
                 return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Test']);
             }
         }
+    }
+
+    public function test_delete($id){
+        if(Test::where("id",$id)->delete()){
+            if(Question::where("test_id",$id)->delete()){
+                return redirect()->back()->with(['toast' => 'success', 'msg' => 'Test deleted successfully']);
+            }else{
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Test Delete, Failed to delete Question']);
+            }
+        }else{
+            return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to delete test']);
+        }
+        
     }
 
     public function question($id){
@@ -330,6 +365,14 @@ class TestController extends Controller
             }
         }
 
+    }
+
+    public function question_delete($id){
+        if(Question::where("id",$id)->delete()){
+            return redirect()->back()->with(['toast' => 'success', 'msg' => 'Question deleted successfully']);
+        }else{
+            return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Question']);
+        }
     }
 
 

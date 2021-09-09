@@ -22,7 +22,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Question</label>
-                                                        <textarea  class="form-control" name="question"
+                                                        <textarea  class="tinymce form-control" name="question"
                                                             placeholder="Question">{{ old("question") }}</textarea>
                                                             
                                                         @error('question')
@@ -38,7 +38,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Option {{$i}}</label>
-                                                        <input type="text"  class="form-control" name="option{{$i}}"
+                                                        <input type="text"  class="tinymce_question form-control" name="option{{$i}}"
                                                             placeholder="option"
                                                             value="{{ old('option'.$i) }}">
                                                         @error('option'.$i)
@@ -65,6 +65,22 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
+                                            
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Explanation</label>
+                                                        <textarea  class="tinymce form-control" name="explanation"
+                                                            placeholder="explanation">{{ old("explanation") }}</textarea>
+                                                           
+                                                            
+                                                        @error('explanation')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 
                                                 <div class="col-md-12">
@@ -83,20 +99,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Explanation</label>
-                                                        <textarea  class="form-control" name="explanation"
-                                                            placeholder="explanation">{{ old("explanation") }}</textarea>
-                                                           
-                                                            
-                                                        @error('explanation')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             
 
