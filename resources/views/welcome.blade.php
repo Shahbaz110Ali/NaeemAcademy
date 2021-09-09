@@ -67,7 +67,7 @@
                 <p>TEST Preperation</p>
             </div>
             <div class="row">
-                <div class="col-lg-12 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in"
+                <div class="col-lg-12 aos-init aos-animate" data-aos="zoom-in"
                     data-aos-delay="100">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
