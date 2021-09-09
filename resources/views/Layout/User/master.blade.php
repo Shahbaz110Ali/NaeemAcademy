@@ -167,7 +167,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('admin.logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{{ route('user.logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -202,7 +202,9 @@
                 <li>
                     <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>My Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
                     <ul id="dashboard_dr" class="collapse collapse-level-1">
-                        
+                        <li>
+                            <a href="{{ route('user.availabletests') }}">Available Tests</a>
+                        </li>
                         <li>
                             <a href="{{ route('user.takentests') }}">Attempted Tests</a>
                         </li>

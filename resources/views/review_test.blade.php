@@ -170,14 +170,15 @@ function simpleTemplating(data) {
             html += '<label class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</label>';
             html += '</div>';
          });
+         if(item.explanation != null){
+            html += '<span>Explanation: '+item.explanation+'</span>';
+         }
+         
          html += '</div>';
          
     });
     html += '  </tr></td>';
     return html;
-  
-       
-    
 }
 
 
@@ -199,6 +200,13 @@ $.ajax({
 
         }
     });
+
+    // $(document).ready(function(){
+        
+    //     $("#pagination-container").hide();
+    // })
+
+    
 
  </script>
 

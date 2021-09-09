@@ -15,7 +15,11 @@
         rel="stylesheet" type="text/css" />
     <!-- Toast CSS -->
     <link href="{{ asset('Kenny/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }}"
-        rel="stylesheet" type="text/css">
+        rel="stylesheet" type="text/css" />
+
+    <link href="{{ asset('Kenny/vendors/bower_components/sweetalert/dist/sweetalert.css') }}"
+    rel="stylesheet" type="text/css">
+    
     @stack('links')
     <!-- Custom CSS -->
     <link href="{{ asset('Kenny/dist/css/style.css') }}" rel="stylesheet" type="text/css">

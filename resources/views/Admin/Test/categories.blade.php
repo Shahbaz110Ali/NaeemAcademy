@@ -45,7 +45,7 @@
                                                     <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                 <a href="{{route("admin.category",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
                                                     <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i
+                                                <a href="javascript:void(0)" data-href="{{route("admin.category.delete",$item['id'])}}" data-toggle="tooltip" class="sa-warning" data-original-title="Delete"> <i
                                                         class="fa fa-close text-danger"></i> </a>
                                             </td>
                                         </tr>
@@ -134,7 +134,7 @@
                                                     <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                 <a href="{{route("admin.question",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
                                                     <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i
+                                                <a href="javascript:void(0)" data-href="{{route("admin.test.delete",$item['id'])}}" data-toggle="tooltip" class="sa-warning" data-original-title="Delete"> <i
                                                         class="fa fa-close text-danger"></i> </a>
                                             </td>
                                         </tr>

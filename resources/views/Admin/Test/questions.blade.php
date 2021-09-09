@@ -42,7 +42,7 @@
                                         @forelse ($data['questions'] as $item)
                                         <tr>
                                             <td>{{$count}}</td>
-                                            <td>{{$item['question']}}</td>
+                                            <td>{!! $item['question'] !!}</td>
                                             <td>
                                                 @php
                                                 $seq = "a";
@@ -58,7 +58,7 @@
                                                 @if (empty($item['explanation']))
                                                 -
                                                 @else
-                                                {{$item['explanation']}}    
+                                                {!! $item['explanation'] !!}    
                                                 @endif
                                             </td>
                                            
@@ -74,7 +74,7 @@
                                                     <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                 {{-- <a href="{{route("admin.question",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
                                                     <i class="fa fa-eye text-inverse m-r-10"></i> </a> --}}
-                                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i
+                                                <a href="javascript:void(0)" data-href="{{route("admin.question.delete",$item['id'])}}" class="sa-warning" data-toggle="tooltip" data-original-title="Delete"> <i
                                                         class="fa fa-close text-danger"></i> </a>
                                             </td>
                                         </tr>
