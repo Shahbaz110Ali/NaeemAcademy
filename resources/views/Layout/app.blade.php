@@ -58,6 +58,7 @@
                     <li><a class="{{ (request()->is('pricing')) ? 'active' : '' }}" href="{{ route('pricing') }}">Pricing</a></li>
                     <li><a class="{{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                     @if (Auth::check())
+                    <li><a class="" href="{{ route('user') }}">Dashboard</a></li>
                     <li><a class="" href="{{ route('user.logout') }}">Log out</a></li>
                     @else
                     <li><a class="" href="{{ route('user.login') }}">Login</a></li>

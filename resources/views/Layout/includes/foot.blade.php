@@ -20,6 +20,11 @@
 <!-- Fancy Dropdown JS -->
 <script src="{{ asset('Kenny/dist/js/dropdown-bootstrap-extended.js') }}"></script>
 
+<!-- Sweet-Alert  -->
+<script src=" {{asset('Kenny/vendors/bower_components/sweetalert/dist/sweetalert.min.js')}}"></script>
+		
+<script src=" {{asset('Kenny/dist/js/sweetalert-data.js')}}"></script>
+
 @stack('scripts')
 <!-- Init JavaScript -->
 <script src="{{ asset('Kenny/dist/js/init.js') }}"></script>

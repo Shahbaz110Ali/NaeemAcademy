@@ -50,9 +50,27 @@ $(function () {
                 closeOnConfirm: false
             }, function () {
                 swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                
+            });
+            
+        }
+
+        $('.sa-warning').on('click',function(e){
+            var lnk = $(this).attr("data-href");
+            swal({   
+                title: "Are you sure?",   
+                text: "You will not be able to recover this data",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#fcb03b",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: false 
+            }, function(){   
+                swal("Deleted!", "Data has been deleted.", "success"); 
+                window.location.href = lnk;
             });
             return false;
-        }
+        });
 
         //Parameter
         $('#sa-params').on('click', function (e) {
