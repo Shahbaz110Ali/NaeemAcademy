@@ -21,17 +21,20 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('category/store', [\App\Http\Controllers\Admin\TestController::class, 'category_store'])->name('admin.category.store');
     Route::post('category/save', [\App\Http\Controllers\Admin\TestController::class, 'category_save'])->name('admin.category.save');
     Route::get('category/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'category_edit'])->name('admin.category.edit');
+    Route::get('category/delete/{id}', [\App\Http\Controllers\Admin\TestController::class, 'category_delete'])->name('admin.category.delete');
     
     Route::get('test/add/{category_id}', [App\Http\Controllers\Admin\TestController::class, 'test_add'])->name('admin.test.add');
     Route::post('test/store', [\App\Http\Controllers\Admin\TestController::class, 'test_store'])->name('admin.test.store');
     Route::get('test/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'test_edit'])->name('admin.test.edit');
     Route::post('test/save', [\App\Http\Controllers\Admin\TestController::class, 'test_save'])->name('admin.test.save');
+    Route::get('test/delete/{id}', [\App\Http\Controllers\Admin\TestController::class, 'test_delete'])->name('admin.test.delete');
 
     Route::get('question/{test_id}', [App\Http\Controllers\Admin\TestController::class, 'question'])->name('admin.question');
     Route::get('question/add/{test_id}', [App\Http\Controllers\Admin\TestController::class, 'question_add'])->name('admin.question.add');
     Route::post('question/store', [\App\Http\Controllers\Admin\TestController::class, 'question_store'])->name('admin.question.store');
     Route::get('question/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'question_edit'])->name('admin.question.edit');
     Route::post('question/save', [\App\Http\Controllers\Admin\TestController::class, 'question_save'])->name('admin.question.save');
+    Route::get('question/delete/{id}', [\App\Http\Controllers\Admin\TestController::class, 'question_delete'])->name('admin.question.delete');
     /** /. Test Routes */
 
     Route::get('competitions', [\App\Http\Controllers\Admin\AdminController::class, 'competitions'])->name('admin.competitions');
