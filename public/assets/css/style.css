@@ -1587,3 +1587,11 @@ section {
   color:#5fcf80;
   font-size: 20px; 
 }
+
+
+.pagination .current-page.active a{
+  background-color: #47db73;
+}
+.pagination .current-page.active a:hover{
+  background-color: #4aca82;
+}

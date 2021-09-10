@@ -115,13 +115,6 @@
 @section('scripts')
 <script src="{{asset('assets/dt/jquery-3.3.1.js')}}"></script>
 <script>
-$(document).ready(function() {
-    var table = $('.apply-dt').DataTable();
-} );
-
-// let current_question = null;
-
-
 $("#startTest").click(function() {
     $(".instructions-for-timer-test").hide();
     $(".timer-test").show();
@@ -151,8 +144,6 @@ function countDown() {
             $('.countdown').html(minutes + ':' + seconds);
         }
         
-        
-        
         timer2 = minutes + ':' + seconds;
     }, 1000);
 }
@@ -169,9 +160,6 @@ $(document).ready(function(){
     for(var i = 2; i <= totalpages; i++){
         $(".pagination").append("<li class='current-page'><a href='javascript:void(0)'>"+i+"</a></li>");
     }
-
-
-    // $(".pagination").append("<li><a href='javascript:void(0)' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
     
     $(".pagination li.current-page").on("click",function(){
         if($(this).hasClass("active")){
@@ -188,15 +176,8 @@ $(document).ready(function(){
                 $("#loop .list-group:eq("+i+")").show();
             }
         }
-        
-        
     })
 });
 
- </script>
- 
- 
-
-
-    
+ </script>    
 @endsection
