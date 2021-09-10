@@ -183,7 +183,7 @@ function simpleTemplating(data) {
 
 
 $.ajax({
-        url: '/get-questions/{{ $test["id"] }}',
+        url: "{{route('getQuestions',$test['id'])}}",
         type: "GET",
         dataType: "json",
         success: function (questions) {
