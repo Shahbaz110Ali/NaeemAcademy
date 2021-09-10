@@ -9,7 +9,7 @@
             <div class="panel panel-default card-view">
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Manage Categories for </h6>
+                        <h6 class="panel-title txt-dark">Tests that will be displayed on home</h6>
                     </div>
                     <div class="pull-right">
                         <a href="#" class="btn btn-primary btn-sm">New Category</a>

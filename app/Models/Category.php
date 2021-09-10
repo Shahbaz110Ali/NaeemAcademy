@@ -40,4 +40,8 @@ class Category extends Model
           			->with('parent');
     }
 
+    public function home_setting(){
+        return $this->belongsTo("App\Models\HomeSetting","parent_id");
+    }
+
 }

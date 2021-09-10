@@ -219,7 +219,10 @@
                     <ul id="settings_dr" class="collapse collapse-level-1">
                         
                         <li>
-                            <a href="{{ route('settings.home.test') }}">Home Tests</a>
+                            <a href="{{ route('settings.home.interface') }}">Home > Interface</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('settings.home.category') }}">Home > Category</a>
                         </li>
                        
                         
