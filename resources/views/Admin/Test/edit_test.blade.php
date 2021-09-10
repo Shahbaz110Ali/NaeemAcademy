@@ -34,7 +34,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Options</label>
-                                                        <input type="number" value="4" class="form-control" name="total_options"
+                                                        <input type="number" min="1" value="4" class="form-control" name="total_options"
                                                             placeholder="Total Options"
                                                             value="{{ $test['total_options'] }}">
                                                         @error('total_options')
@@ -46,7 +46,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Question Per Page</label>
-                                                        <input type="number"  class="form-control" name="q_per_page"
+                                                        <input type="number" min="1"   class="form-control" name="q_per_page"
                                                             placeholder="Total question per page"
                                                             value="{{ $test['question_per_page'] }}">
                                                         @error('q_per_page')
@@ -61,7 +61,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Min Marks</label>
-                                                        <input type="number" value="1" class="form-control" name="min_marks"
+                                                        <input type="number" min="0" step="0.01" value="1" class="form-control" name="min_marks"
                                                             placeholder="Min Marks"
                                                             value="{{ $test['min_marks'] }}">
                                                         @error('min_marks')
@@ -72,11 +72,11 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="control-label">Max Marks</label>
-                                                        <input type="number" value="100" class="form-control" name="max_marks"
-                                                            placeholder="Max Marks"
-                                                            value="{{ $test['max_marks'] }}">
-                                                        @error('max_marks')
+                                                        <label class="control-label">Marks Per Question</label>
+                                                        <input type="number" min="0" step="0.01" value="1" class="form-control" name="marks_per_question"
+                                                            placeholder="Marks Per Question"
+                                                            value="{{ $test['marks_per_question'] }}">
+                                                        @error('marks_per_question')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -85,7 +85,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Negative Marks</label>
-                                                        <input type="number" value="0" class="form-control" name="negative_marks"
+                                                        <input type="number" min="0" step="0.01" value="0" class="form-control" name="negative_marks"
                                                             placeholder="Negative Marks"
                                                             value="{{ $test['negative_marks'] }}">
                                                         @error('negative_marks')
@@ -145,7 +145,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Duration in minutes</label>
-                                                        <input {{$duration_disable}}  type="number" class="form-control" id="duration" name="duration"
+                                                        <input {{$duration_disable}}  type="number" min="0" class="form-control" id="duration" name="duration"
                                                             placeholder="duration in minutes"
                                                             value="{{ $test['duration'] }}">
                                                         @error('duration')

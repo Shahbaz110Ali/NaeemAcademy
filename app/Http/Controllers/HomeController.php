@@ -82,7 +82,8 @@ class HomeController extends Controller
 
     public function review_test($id){
        
-        $data['test'] = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
+        $test = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
+        $data['test'] = $test;
         if($data['test']['type'] == "competition"){
             if(Auth::check()){
                 $user = Auth::user()->toArray();
@@ -95,59 +96,56 @@ class HomeController extends Controller
                 
 
                  //==============
-            $user_attempt = TestUserQuestion::where("test_user_id",$test_user['id'])->get()->toArray();
-            $questions = Question::where(["test_id"=>$data['test']['id'],"status"=>1])->get()->toArray();
-            
-            $min = $data['test']['min_marks'];
-            $max = $data['test']['max_marks'];
-            $negative = $data['test']['negative_marks'];
-            $total_q = count($questions);
-            $marks_per_q = ($max / $total_q);
-
-            $attempted_q = count($user_attempt);
-            $un_answered = ($total_q - $attempted_q);
-
-            $correct = 0;
-            $wrong = 0;
-
-            $plus = 0;
-            $minus = 0;
-
-            foreach($user_attempt as $q_id=>$op){
-                $q = Question::where("id",$op['question_id'])->get()->toArray()[0];
-                if($q['answer'] == $op['answer']){
-                    $correct++;
-                    $plus = ($plus + $marks_per_q);
-                }else{
-                    $wrong++;
-                    $minus = $minus + $negative;
-                }
-            }
-
-            $ob_marks = ($plus - $minus);
-            $percentage = (($ob_marks / $max) * 100);
-
-            $sess['test_info'] = [
-                "test_id"=>$data['test']['id'],
-                'min'=>$min,
-                'max'=>$max,
-                'negative'=>$negative,
-                'total_q'=>$total_q,
-                'marks_per_q'=>$marks_per_q,
-                'attempted_q'=>$attempted_q,
-                'un_answered'=>$un_answered,
-                'correct'=>$correct,
-                'wrong'=>$wrong,
-                "plus_marks"=>$plus,
-                "minus_marks"=>$minus,
-                'ob_marks'=>round($ob_marks,2),
-                'percentage'=>round($percentage,2),
-                
-            ];
-            $sess['test'] = $data['test'];
-
-            Session::put("submitted_test",$sess);
-
+                 
+                 $questions = Question::where(["test_id"=>$id,"status"=>1])->get()->toArray();
+         
+                 $min_marks = $test['min_marks'];
+                 $marks_per_q = $test['marks_per_question'];
+                 $negative_marks = $test['negative_marks'];
+                 
+                 $total_q = count($questions);
+                 $total_attempted_q = count($user_attempt);
+                 $total_un_attempted_q = ($total_q - $total_attempted_q);
+         
+                 $total_marks = ($total_q * $marks_per_q);
+         
+                 $correct = 0;
+                 $wrong = 0;
+         
+                 foreach($user_attempt as $attempt){
+                     $q = Question::where("id",$attempt['question_id'])->get()->toArray()[0];
+                     if($q['answer'] == $attempt['answer']){
+                         $correct++;
+                     }else{
+                         $wrong++;
+                     }
+         
+                 }
+         
+                 $correct_marks = ($marks_per_q * $correct);
+                 $wrong_marks = ($negative_marks * $wrong);
+         
+                 $ob_marks = round(($correct_marks - $wrong_marks),2);
+                 $percentage = round((($ob_marks / $total_marks) * 100),2);
+         
+                 $data['test_info'] = [
+                     "test_id"=>$test['id'],
+                     'min_marks'=>$min_marks,
+                     'marks_per_q'=>$marks_per_q,
+                     'negative_marks'=>$negative_marks,
+                     'total_q'=>$total_q,
+                     'attempted_q'=>$total_attempted_q,
+                     'un_attempted'=>$total_un_attempted_q,
+                     'correct_q'=>$correct,
+                     'wrong_q'=>$wrong,
+                     "correct_marks"=>$correct_marks,
+                     "wrong_marks"=>$wrong_marks,
+                     'ob_marks'=>$ob_marks,
+                     'total_marks'=>$total_marks,
+                     'percentage'=>$percentage,
+                 ];
+                 $data['test'] = $test;
+                 Session::put("submitted_test",$data);
             //==============
 
                 
@@ -204,31 +202,25 @@ class HomeController extends Controller
         
         $questions = Question::where(["test_id"=>$controls['test_id'],"status"=>1])->get()->toArray();
 
-        $min = $test['min_marks'];
-        $max = $test['max_marks'];
-        $negative = $test['negative_marks'];
+        $min_marks = $test['min_marks'];
+        $marks_per_q = $test['marks_per_question'];
+        $negative_marks = $test['negative_marks'];
+        
         $total_q = count($questions);
-        $marks_per_q = ($max / $total_q);
+        $total_attempted_q = count($user_attempt);
+        $total_un_attempted_q = ($total_q - $total_attempted_q);
 
-        $attempted_q = count($user_attempt);
-        $un_answered = ($total_q - $attempted_q);
+        $total_marks = ($total_q * $marks_per_q);
 
         $correct = 0;
         $wrong = 0;
-
-        $plus = 0;
-        $minus = 0;
-
-        
 
         foreach($user_attempt as $q_id=>$op){
             $q = Question::where("id",$q_id)->get()->toArray()[0];
             if($q['answer'] == "option".$op){
                 $correct++;
-                $plus = ($plus + $marks_per_q);
             }else{
                 $wrong++;
-                $minus = $minus + $negative;
             }
 
             if($test['type'] == "competition"){
@@ -240,36 +232,36 @@ class HomeController extends Controller
                         'answer'=>"option".$op,
                     ];
                     TestUserQuestion::create($data);
-                    
-
                 }
-                
             }
         }
 
-        $ob_marks = ($plus - $minus);
-        $percentage = (($ob_marks / $max) * 100);
+        $correct_marks = ($marks_per_q * $correct);
+        $wrong_marks = ($negative_marks * $wrong);
+
+        $ob_marks = round(($correct_marks - $wrong_marks),2);
+        $percentage = round((($ob_marks / $total_marks) * 100),2);
 
         $data['test_info'] = [
             "test_id"=>$controls['test_id'],
-            'min'=>$min,
-            'max'=>$max,
-            'negative'=>$negative,
-            'total_q'=>$total_q,
+            'min_marks'=>$min_marks,
             'marks_per_q'=>$marks_per_q,
-            'attempted_q'=>$attempted_q,
-            'un_answered'=>$un_answered,
-            'correct'=>$correct,
-            'wrong'=>$wrong,
-            "plus_marks"=>$plus,
-            "minus_marks"=>$minus,
+            'negative_marks'=>$negative_marks,
+            'total_q'=>$total_q,
+            'attempted_q'=>$total_attempted_q,
+            'un_attempted'=>$total_un_attempted_q,
+            'correct_q'=>$correct,
+            'wrong_q'=>$wrong,
+            "correct_marks"=>$correct_marks,
+            "wrong_marks"=>$wrong_marks,
             'ob_marks'=>$ob_marks,
+            'total_marks'=>$total_marks,
             'percentage'=>$percentage,
             'user_attempt'=>$user_attempt
-
         ];
         $data['test'] = $test;
         Session::put("submitted_test",$data);
+        
         return redirect(route("test.review",$controls['test_id']));
         // return redirect(route("test.result"));
     }

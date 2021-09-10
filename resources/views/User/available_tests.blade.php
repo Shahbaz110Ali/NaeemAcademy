@@ -27,7 +27,7 @@
                                             <th>Category</th>
                                             <th>Test</th>
                                             <th>Duration</th>
-                                            <th>Max Marks</th>
+                                            <th>Marks Per Question</th>
                                             
                                             <th>Negative</th>
                                             {{-- <th>Status</th> --}}
@@ -60,7 +60,7 @@
                                             <td>{{$item['name']}}</td>
                                             <td>{{$item['duration']}}</td>
                                             
-                                            <td>{{$item['max_marks']}}</td>
+                                            <td>{{$item['marks_per_question']}}</td>
                                             
                                             <td>{{$item['negative_marks']}}</td>
                                             
