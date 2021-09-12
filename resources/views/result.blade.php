@@ -37,34 +37,46 @@
                                </tr>
                            </thead>
                             <tbody>
-                                
-                                <tr>
-                                    <th>Max Marks</th>
-                                    <th>{{$test_info['max']}}</th>
-                                </tr>
-                                <tr>
-                                    <th>Negative Marks</th>
-                                    <th>{{$test_info['negative']}}</th>
-                                </tr>
                                 <tr>
                                     <th>Total Questions</th>
                                     <th>{{$test_info['total_q']}}</th>
                                 </tr>
+                                <tr>
+                                    <th>Marks Per Question</th>
+                                    <th>{{$test_info['marks_per_q']}}</th>
+                                </tr>
+                                <tr>
+                                    <th>Negative Marks</th>
+                                    <th>{{$test_info['negative_marks']}}</th>
+                                </tr>
+                                
                                 <tr>
                                     <th>Attempted Questions</th>
                                     <th>{{$test_info['attempted_q']}}</th>
                                 </tr>
                                 <tr> 
                                     <th>Unattempted Questions</th>
-                                    <th>{{$test_info['un_answered']}}</th>
+                                    <th>{{$test_info['un_attempted']}}</th>
                                 </tr>
                                 <tr> 
                                     <th>Wrong Attempt</th>
-                                    <th>{{$test_info['wrong']}}</th>
+                                    <th>{{$test_info['wrong_q']}}</th>
                                 </tr>
                                 <tr> 
                                     <th>Correct Attempt</th>
-                                    <th>{{$test_info['correct']}}</th>
+                                    <th>{{$test_info['correct_q']}}</th>
+                                </tr>
+                                <tr> 
+                                    <th>Total Marks</th>
+                                    <th>{{$test_info['total_marks']}}</th>
+                                </tr>
+                                <tr> 
+                                    <th>Correct Marks</th>
+                                    <th>{{$test_info['correct_marks']}}</th>
+                                </tr>
+                                <tr> 
+                                    <th>Wrong Marks</th>
+                                    <th>{{$test_info['wrong_marks']}}</th>
                                 </tr>
                                 <tr> 
                                     <th>Obtained Marks</th>

@@ -11,7 +11,7 @@ class Test extends Model
         'name',
         'category_id',
         'duration',
-        'max_marks',
+        'marks_per_question',
         'min_marks',
         'negative_marks',
         'total_options',
