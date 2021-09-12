@@ -198,16 +198,12 @@
                 <li>
                     <a href="{{ route('admin') }}"><i class="icon-picture mr-10"></i>Dashboard</a>
                 </li>
+                
                 <li>
-                    <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>General Recruitment</a>
-                </li>
-                <li>
-                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>Manage Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-                    <ul id="dashboard_dr" class="collapse collapse-level-1">
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#test_dr"><i class="icon-note mr-10"></i>Manage Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="test_dr" class="collapse collapse-level-1">
                         
-                        <li>
-                            <a href="{{ route('admin.interface.add') }}">Create New Interface</a>
-                        </li>
+                       
                         <li>
                             <a href="{{ route('admin.interface') }}">Manage Interfaces</a>
                         </li>
@@ -216,11 +212,25 @@
                             <a href="{{ route('admin.competitions') }}">Competitions</a>
                         </li>
                         
-                                            </ul>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>Mock Test</a>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#settings_dr"><i class="icon-settings mr-10"></i>Settings<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="settings_dr" class="collapse collapse-level-1">
+                        
+                        <li>
+                            <a href="{{ route('settings.home.interface') }}">Home > Interface</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('settings.home.category') }}">Home > Category</a>
+                        </li>
+                       
+                        
+                    </ul>
                 </li>
+                {{-- <li>
+                    <a href="{{ route('admin') }}"><i class="icon-note mr-10"></i>Mock Test</a>
+                </li> --}}
                 
                
             </ul>

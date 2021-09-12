@@ -41,5 +41,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('competition/participate/{test_id}', [\App\Http\Controllers\Admin\AdminController::class, 'competition_participants'])->name('admin.competition.participants');
     Route::get('competition/review/{test_id}/{user_id}', [\App\Http\Controllers\Admin\AdminController::class, 'competition_review'])->name('admin.competition.review');
     
-   
+    Route::get("settings/home/interface",[\App\Http\Controllers\Admin\SettingController::class, 'home_interface'])->name("settings.home.interface");
+    Route::get("settings/home/category",[\App\Http\Controllers\Admin\SettingController::class, 'home_category'])->name("settings.home.category");
 });
