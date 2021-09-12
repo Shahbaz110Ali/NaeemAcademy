@@ -94,7 +94,7 @@
                                             <th>Name</th>
                                             <th>Duration</th>
                                             <th>Min</th>
-                                            <th>Max</th>
+                                            <th>Marks/Q</th>
                                             <th>Negative</th>
                                             <th>Options</th>
                                             <th>Q/Page</th>
@@ -117,7 +117,7 @@
 
                                             </td>
                                             <td>{{$item['min_marks']}}</td>
-                                            <td>{{$item['max_marks']}}</td>
+                                            <td>{{$item['marks_per_question']}}</td>
                                             <td>{{$item['negative_marks']}}</td>
                                             <td>{{$item['total_options']}}</td>
                                             <td>{{$item['question_per_page']}}</td>

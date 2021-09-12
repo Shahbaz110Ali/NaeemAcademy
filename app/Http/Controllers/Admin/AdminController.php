@@ -52,11 +52,11 @@ class AdminController extends Controller
             $questions = Question::where(["test_id"=>$data['test']['id'],"status"=>1])->get()->toArray();
             
             $min = $data['test']['min_marks'];
-            $max = $data['test']['max_marks'];
+            
             $negative = $data['test']['negative_marks'];
             $total_q = count($questions);
-            $marks_per_q = ($max / $total_q);
-
+            $marks_per_q = $data['test']['marks_per_question'];
+            $max = ($total_q *  $marks_per_q);
             $attempted_q = count($user_attempt);
             $un_answered = ($total_q - $attempted_q);
 
@@ -68,7 +68,7 @@ class AdminController extends Controller
 
             foreach($user_attempt as $q_id=>$op){
                 $q = Question::where("id",$op['question_id'])->get()->toArray()[0];
-                if($q['answer'] == "option".$op['answer']){
+                if($q['answer'] ==  $op['answer']){
                     $correct++;
                     $plus = ($plus + $marks_per_q);
                 }else{
