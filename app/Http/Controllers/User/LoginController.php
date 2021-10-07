@@ -17,7 +17,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('user.login');
+        return view('User.login');
     }
 
     public function authenticate(Request $request)
@@ -70,7 +70,7 @@ class LoginController extends Controller
     }
 
     public function register(){
-        return view("user.register");
+        return view("User.register");
     }
 
     public function create(Request $request){
@@ -90,6 +90,8 @@ class LoginController extends Controller
                 "email" =>  $controls['email'],
                 "password" =>  bcrypt($controls['password']),
                 "contact" =>  $controls['contact'],
+                "referral_id"=>"",
+                "referred_by"=>"",
             ];
             $user = User::create($data);
             if($user->id){

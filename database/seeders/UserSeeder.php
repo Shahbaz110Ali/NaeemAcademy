@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
                 'email'=>"user$i@gmail.com",
                 "password"=>Hash::make('password'),
                 'contact'=>null,
+                "referral_id"=>"UN82".$i,
+                "referred_by"=>null,
             ]);
         }
     }

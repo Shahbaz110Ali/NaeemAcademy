@@ -215,6 +215,14 @@
                     </ul>
                 </li>
                 <li>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#course_dr"><i class="icon-note mr-10"></i>Manage Courses <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="course_dr" class="collapse collapse-level-1">           
+                        <li>
+                            <a href="{{ route('admin.course.list') }}">Courses</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a   href="javascript:void(0);" data-toggle="collapse" data-target="#settings_dr"><i class="icon-settings mr-10"></i>Settings<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
                     <ul id="settings_dr" class="collapse collapse-level-1">
                         

@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('contact')->nullable();
+            $table->longText("referral_id")->nullable();
+            $table->longText("referred_by")->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedInteger('status')->default(1);

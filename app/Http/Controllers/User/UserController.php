@@ -21,7 +21,7 @@ class UserController extends Controller
 {
     public function dashboard(){
         $data['user'] = Auth::user()->toArray();
-        return view("user.dashboard",$data);
+        return view("User.dashboard",$data);
     }
 
     public function available_tests(){
@@ -44,7 +44,7 @@ class UserController extends Controller
         }
 
         // dd($data);
-        return view("user.available_tests",$data);
+        return view("User.available_tests",$data);
 
     }
 
@@ -66,7 +66,7 @@ class UserController extends Controller
                 $index++;
             }
         }
-        return view("user.taken_tests",$data);
+        return view("User.taken_tests",$data);
         
     }
 }
