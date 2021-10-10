@@ -19,7 +19,7 @@ use App\Models\Course;
 class CourseController extends Controller
 {
     public function course() {
-        $courses = Course::where(["status"=>1])->get()->toArray();
+        $courses = Course::where('status', '!=' , 3)->get()->toArray();
         return view("Admin.Course.course", compact('courses'));
     }
 
@@ -82,24 +82,74 @@ class CourseController extends Controller
         
     }
 
-    // public function interface_edit($id) {
-    //     $interface = Category::find($id)->toArray();
-    //     return view('Admin.Test.edit_interface', compact('interface'));
-    // }
+    public function course_edit($id) {
+        $course = Course::find($id)->toArray();
+        return view('Admin.Course.edit_course', compact('course'));
+    }
 
-    // public function interface_save(Request $request) {
-    //     $id = $request->post("id");
-    //     $validated = $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //         'status' => 'required',
-    //     ],$request->all());
-    //     $interface = Category::where("id",$id)->update($validated);
-    //     if($interface) {
-    //         return redirect()->route('admin.interface')->with(['toast' => 'success', 'msg' => 'Interface Updated successfully']);
-    //     } else {
-    //         return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Interface']);
-    //     }
-    // }
+    public function course_save(Request $request) {
+        $controls = $request->all();
+        $rules =  [
+                'course_title' => 'required',
+                'course_description' => 'required',
+                'course_type' => 'required',
+                'banner_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+                'course_price' => 'required|numeric',
+                'course_discount' => 'sometimes|numeric',
+                'creator_name' => 'sometimes',
+                'creator_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+                'status' => 'required',
+                
+            ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $data = [
+                'title' => $controls['course_title'],
+                'description' => $controls['course_description'],
+                'type' => $controls['course_type'],
+                'price' => $controls['course_price'],
+                'discount' => $controls['course_discount'],
+                'creator' => $controls['creator_name'],
+                'status' => $controls['status'],
+                
+            ];
+            if( $request->hasFile('banner_image')){
+                $image = $request->file('banner_image');
+                $fileName = str_replace(" ","_",pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
+                $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+                $banner_img = $fileName."-".time().".".$image->getClientOriginalExtension();
+                $request->file('banner_image')->storeAs('public/img/course/course_banner', $banner_img);
+                
+                $data['course_image'] = $banner_img;
+            }
+            
+            if( $request->hasFile('creator_image')){
+                $image = $request->file('creator_image');
+                $fileName = str_replace(" ","_",pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
+                $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+                $creator_img = $fileName."-".time().".".$image->getClientOriginalExtension();
+                $request->file('creator_image')->storeAs('public/img/course/course_creator', $creator_img);
+                
+                $data['creator_image'] = $creator_img;
+            }
+
+            $course = Course::where("id",$request->post("id"))->update($data);
+            if($course) {
+                return redirect()->route('admin.course.list')->with(['toast' => 'success', 'msg' => 'Course updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Course']);
+            }
+        }
+    }
+
+    public function course_delete($id){
+        if(Course::where("id",$id)->update(["status"=>3])){
+            return redirect()->route('admin.course.list')->with(['toast' => 'success', 'msg' => 'Course deleted successfully']);
+        } else {
+            return redirect()->route('admin.course.list')->with(['toast' => 'error', 'msg' => 'Failed to delete Course']);
+        }
+    }
     
 }

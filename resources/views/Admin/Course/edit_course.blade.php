@@ -10,10 +10,11 @@
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <div class="form-wrap">
-                                    <form action="{{ route('admin.course.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.course.save') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        <input type="hidden" name="id" value="{{$course['id']}}">
                                         <div class="form-body">
-                                            <h3 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Course Details</h3>
+                                            <h3 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Edit Course</h3>
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -21,7 +22,7 @@
                                                         <label class="control-label">Course Type</label>
                                                         <input type="text" class="form-control" name="course_type"
                                                             placeholder="Course Type"
-                                                            value="{{ old('course_type') }}">
+                                                            value="{{ $course['type'] }}">
                                                         @error('course_type')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -32,7 +33,7 @@
                                                         <label class="control-label">Course Title</label>
                                                         <input type="text" class="form-control" name="course_title"
                                                             placeholder="Course Title"
-                                                            value="{{ old('course_title') }}">
+                                                            value="{{ $course['title'] }}">
                                                         @error('course_title')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -44,7 +45,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Course Description</label>
                                                         <textarea name="course_description" class="form-control" rows="3"
-                                                            placeholder="More about this course..">{{ old('course_description') }}</textarea>
+                                                            placeholder="More about this course..">{{ $course['description'] }}</textarea>
                                                         @error('course_description')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -57,7 +58,7 @@
                                                         <label class="control-label">Course Price</label>
                                                         <input type="text" class="form-control" name="course_price"
                                                             placeholder="Course Price"
-                                                            value="{{ old('course_price') }}">
+                                                            value="{{ $course['price'] }}">
                                                         @error('course_price')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -68,8 +69,7 @@
                                                         <label class="control-label">Discount %</label>
                                                         <input type="number" class="form-control" name="course_discount"
                                                             placeholder="Discount %"
-                                                            value = "0"
-                                                            value="{{ old('course_discount') }}">
+                                                            value="{{ $course['discount'] }}">
                                                         @error('course_discount')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -91,8 +91,12 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Status</label>
                                                         <select class="form-control" name="status">
-                                                            <option value="1" {{ ((old('status') == 1)?"selected":"" ) }}>Active</option>
-                                                            <option value="2" {{ ((old('status') == 2)?"selected":"" ) }}>Inactive</option>
+                                                            <option value="1"
+                                                                {{ $course['status'] == 1 ? 'selected' : '' }}>Active
+                                                            </option>
+                                                            <option value="2"
+                                                                {{ $course['status'] == 2 ? 'selected' : '' }}>Inactive
+                                                            </option>
                                                         </select>
                                                         @error('status')
                                                             <span class="text-danger">{{ $message }}</span>
@@ -101,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <h3 class="txt-dark capitalize-font"><i class="icon-user mr-10"></i>Author Details</h3>
+                                            <h3 class="txt-dark capitalize-font"><i class="icon-user mr-10"></i>Edit Author Details</h3>
                                             <hr>
                                             <div class="row">
                                                 
@@ -110,7 +114,7 @@
                                                         <label class="control-label">Author Name</label>
                                                         <input type="text" class="form-control" name="creator_name"
                                                             placeholder="Creator Name"
-                                                            value="{{ old('creator_name') }}">
+                                                            value="{{ $course['creator'] }}">
                                                         @error('creator_name')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror

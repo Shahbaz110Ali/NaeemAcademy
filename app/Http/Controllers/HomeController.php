@@ -16,6 +16,7 @@ use App\Models\Question;
 use App\Models\TrackTest;
 use App\Models\TestUser;
 use App\Models\TestUserQuestion;
+use App\Models\Course;
 
 class HomeController extends Controller
 {
@@ -34,7 +35,8 @@ class HomeController extends Controller
 
     public function courses()
     {
-        return view('courses');
+        $courses = Course::where("status",1)->get()->toArray();
+        return view('courses',compact("courses"));
     }
 
     public function trainers()
