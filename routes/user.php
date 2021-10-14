@@ -21,5 +21,7 @@ Route::middleware('auth:web')->group(function () {
     // Route::post('interface/save', [\App\Http\Controllers\Admin\TestController::class, 'interface_save'])->name('admin.interface.save');
     // Route::get('interface/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'interface_edit'])->name('admin.interface.edit');
 
+    Route::get("course/buy/{id}",[\App\Http\Controllers\User\CourseController::class,"buy_course"])->name("user.course.buy");
+    Route::post("course/buy",[\App\Http\Controllers\User\CourseController::class,"purchase_course"])->name("user.course.purchase");
     
 });

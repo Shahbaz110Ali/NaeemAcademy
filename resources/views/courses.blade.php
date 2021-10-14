@@ -20,24 +20,32 @@
                     @forelse ($courses as $item)
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch"> <!-- start course item-->
                         <div class="course-item">
-                            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+                            <img src="{{asset('storage/img/course/course_banner/'.$item['course_image'])}}" class="img-fluid" alt="...">
                             <div class="course-content">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4>{{$item['type']}}</h4>
+                                    @if (empty($item['discount']) || $item['discount'] < 1)
                                     <p class="price">RS {{$item['price']}}</p>
+                                    @else 
+                                    <p class="price" style=""><del class="price">RS {{$item['price']}}</del></p>
+                                    <p class="price">RS {{(($item['price'] / 100) * (100 - $item['discount']))}}</p>
+                                    @endif
                                 </div>
 
                                 <h3><a href="course-details.html">{{$item['title']}}</a></h3>
                                 <p>{{$item['description']}}</p>
                                 <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                                        <img src="{{asset('storage/img/course/course_creator/'.$item['creator_image'])}}" class="img-fluid" alt="">
                                         <span>{{$item['creator']}}</span>
                                     </div>
-                                    <div class="trainer-rank d-flex align-items-center">
+                                    {{-- <div class="trainer-rank d-flex align-items-center">
                                         <i class="bx bx-user"></i>&nbsp;50
                                         &nbsp;&nbsp;
                                         <i class="bx bx-heart"></i>&nbsp;65
+                                    </div> --}}
+                                    <div class="trainer-rank d-flex align-items-center">
+                                        <a href="{{route("user.course.buy",$item['id'])}}" class="btn btn-success">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
