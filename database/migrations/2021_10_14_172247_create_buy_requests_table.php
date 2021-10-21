@@ -15,6 +15,13 @@ class CreateBuyRequestsTable extends Migration
     {
         Schema::create('buy_requests', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id");
+            $table->integer("course_id");
+            $table->string("payment_method")->nullable();
+            $table->string("payment_date")->nullable();
+            $table->string("amount_paid")->nullable();
+            $table->string("image_proof")->nullable();
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }

@@ -69,4 +69,8 @@ class UserController extends Controller
         return view("User.taken_tests",$data);
         
     }
+
+    public function profile(){
+        dd("User Profile will be developed here");
+    }
 }
