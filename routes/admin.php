@@ -51,4 +51,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::post("course/save",[\App\Http\Controllers\Admin\CourseController::class, 'course_save'])->name("admin.course.save");
     Route::get("course/delete/{id}",[\App\Http\Controllers\Admin\CourseController::class, 'course_delete'])->name("admin.course.delete");
 
+    Route::get("profile",[\App\Http\Controllers\Admin\AdminController::class, 'profile'])->name("admin.profile");
+    Route::get("profile/edit",[\App\Http\Controllers\Admin\AdminController::class, 'edit_profile'])->name("admin.profile.edit");
+    Route::post("profile/update",[\App\Http\Controllers\Admin\AdminController::class, 'update_profile'])->name("admin.profile.update");
+
+    Route::post("profile/password/update",[\App\Http\Controllers\Admin\AdminController::class, 'update_password'])->name("admin.password.change");
+
 });

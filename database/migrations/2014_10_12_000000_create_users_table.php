@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->longText("referral_id")->nullable();
             $table->longText("referred_by")->nullable();
+            $table->longText("image")->default("default.png");
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedInteger('status')->default(1);

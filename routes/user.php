@@ -22,7 +22,11 @@ Route::middleware('auth:web')->group(function () {
     // Route::get('interface/edit/{id}', [\App\Http\Controllers\Admin\TestController::class, 'interface_edit'])->name('admin.interface.edit');
 
     Route::get("profile",[\App\Http\Controllers\User\UserController::class, 'profile'])->name("user.profile");
+    Route::get("profile/edit",[\App\Http\Controllers\User\UserController::class, 'edit_profile'])->name("user.profile.edit");
+    Route::post("profile/update",[\App\Http\Controllers\User\UserController::class, 'update_profile'])->name("user.profile.update");
 
+    Route::post("profile/password/update",[\App\Http\Controllers\User\UserController::class, 'update_password'])->name("user.password.change");
+    
     Route::get("course/buy/{id}",[\App\Http\Controllers\User\CourseController::class,"buy_course"])->name("user.course.buy");
     Route::post("course/buy",[\App\Http\Controllers\User\CourseController::class,"purchase_course"])->name("user.course.purchase");
     
