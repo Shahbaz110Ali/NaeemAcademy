@@ -43,7 +43,10 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get("settings/home/interface",[\App\Http\Controllers\Admin\SettingController::class, 'home_interface'])->name("settings.home.interface");
     Route::get("settings/home/category",[\App\Http\Controllers\Admin\SettingController::class, 'home_category'])->name("settings.home.category");
-
+    Route::get("settings/courses/description",[\App\Http\Controllers\Admin\SettingController::class, 'courses_description'])->name("settings.courses.description");
+    Route::post("settings/courses/description/store",[\App\Http\Controllers\Admin\SettingController::class, 'courses_description_store'])->name("settings.courses.description.store");
+    
+    
     Route::get("course/list",[\App\Http\Controllers\Admin\CourseController::class, 'course'])->name("admin.course.list");
     Route::get("course/add",[\App\Http\Controllers\Admin\CourseController::class, 'course_add'])->name("admin.course.add");
     Route::post("course/store",[\App\Http\Controllers\Admin\CourseController::class, 'course_store'])->name("admin.course.store");
