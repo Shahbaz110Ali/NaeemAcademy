@@ -89,8 +89,8 @@
                                         </ul>
                                     </nav>
                                 </div>
-                                <div>
-                                    <button type="submit" class="get-started-btn">Submit Test</button>
+                                <div id="submit-btnContainer">
+                                    
                                 </div>
                             </div>
                             @if ($test['duration'] > 0)
@@ -160,15 +160,32 @@ $(document).ready(function(){
     for(var i = 2; i <= totalpages; i++){
         $(".pagination").append("<li class='current-page'><a href='javascript:void(0)'>"+i+"</a></li>");
     }
-
     $(".pagination").append("<li id='next-page'><a href='javascript:void(0)' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
     
-    
+    function submitBtnAppend(){
+        $("#submit-btnContainer").append('<button type="submit" id="btn-submit" class="get-started-btn">Submit Test</button>');
+    }
+
+    function submitBtnRemove(){
+        $("#submit-btnContainer").html('');
+    }
+
+    if(totalpages <= 1){
+        submitBtnAppend();
+    }else{
+        submitBtnRemove();
+    }
+
     $(".pagination li.current-page").on("click",function(){
         if($(this).hasClass("active")){
             return false;
         }else{
             var currentPage = $(this).index();
+            if(currentPage == totalpages ){
+                submitBtnAppend();
+            }else{
+                submitBtnRemove();
+            }
             $(".pagination li").removeClass("active");
             $(this).addClass("active");
             $("#loop .list-group").hide();
@@ -187,6 +204,11 @@ $(document).ready(function(){
             return false;
         }else{
             currentPage++;
+            if(currentPage == totalpages ){
+                submitBtnAppend();
+            }else{
+                submitBtnRemove();
+            }
             $(".pagination li").removeClass("active");
             $("#loop .list-group").hide();
 
@@ -206,6 +228,11 @@ $(document).ready(function(){
             return false;
         }else{
             currentPage--;
+            if(currentPage == totalpages ){
+                submitBtnAppend();
+            }else{
+                submitBtnRemove();
+            }
             $(".pagination li").removeClass("active");
             $("#loop .list-group").hide();
 
