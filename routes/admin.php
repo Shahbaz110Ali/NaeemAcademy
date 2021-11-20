@@ -43,4 +43,21 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get("settings/home/interface",[\App\Http\Controllers\Admin\SettingController::class, 'home_interface'])->name("settings.home.interface");
     Route::get("settings/home/category",[\App\Http\Controllers\Admin\SettingController::class, 'home_category'])->name("settings.home.category");
+    Route::get("settings/courses/description",[\App\Http\Controllers\Admin\SettingController::class, 'courses_description'])->name("settings.courses.description");
+    Route::post("settings/courses/description/store",[\App\Http\Controllers\Admin\SettingController::class, 'courses_description_store'])->name("settings.courses.description.store");
+    
+    
+    Route::get("course/list",[\App\Http\Controllers\Admin\CourseController::class, 'course'])->name("admin.course.list");
+    Route::get("course/add",[\App\Http\Controllers\Admin\CourseController::class, 'course_add'])->name("admin.course.add");
+    Route::post("course/store",[\App\Http\Controllers\Admin\CourseController::class, 'course_store'])->name("admin.course.store");
+    Route::get("course/edit/{id}",[\App\Http\Controllers\Admin\CourseController::class, 'course_edit'])->name("admin.course.edit");
+    Route::post("course/save",[\App\Http\Controllers\Admin\CourseController::class, 'course_save'])->name("admin.course.save");
+    Route::get("course/delete/{id}",[\App\Http\Controllers\Admin\CourseController::class, 'course_delete'])->name("admin.course.delete");
+
+    Route::get("profile",[\App\Http\Controllers\Admin\AdminController::class, 'profile'])->name("admin.profile");
+    Route::get("profile/edit",[\App\Http\Controllers\Admin\AdminController::class, 'edit_profile'])->name("admin.profile.edit");
+    Route::post("profile/update",[\App\Http\Controllers\Admin\AdminController::class, 'update_profile'])->name("admin.profile.update");
+
+    Route::post("profile/password/update",[\App\Http\Controllers\Admin\AdminController::class, 'update_password'])->name("admin.password.change");
+
 });

@@ -6,6 +6,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\Admin\Admin;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Test;
@@ -135,6 +140,68 @@ class AdminController extends Controller
         
         
         return view('review_test',$data);
+    }
+
+    public function profile(){
+        $data['user'] = Admin::where("id",Auth::User()->id)->get()->toArray()[0];
+        return view("Admin.profile",$data);
+    }
+
+    public function edit_profile(){
+        $data['user'] = Admin::where("id",Auth::User()->id)->get()->toArray()[0];
+        return view("Admin.edit_profile",$data);
+    }
+
+    public function update_profile(Request $request){
+        $controls = $request->all();
+        $rules =  [
+                'name' => 'required',
+                'user_img' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+            ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $data = [
+                'name' => $controls['name'],
+            ];
+            if( $request->hasFile('user_img')){
+                $image = $request->file('user_img');
+                $fileName = str_replace(" ","_",pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
+                $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+                $user_img = $fileName."-".time().".".$image->getClientOriginalExtension();
+                $request->file('user_img')->storeAs('public/img/admins', $user_img);
+                
+                $data['image'] = $user_img;
+            }
+         
+            $user = Admin::where("id",Auth::User()->id)->update($data);
+            if($user) {
+                return redirect()->route('admin.profile')->with(['toast' => 'success', 'msg' => 'Admin updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Admin']);
+            }
+        }
+    }
+
+    public function update_password(Request $request){
+        $controls = $request->all();
+        $rules =  [
+            'new_password'         => 'required',
+            'confrim_password' => 'required|same:new_password'  
+            ];
+        $validator = Validator::make($controls,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{
+            $user = Admin::where("id",Auth::User()->id)->update(['password' => Hash::make($controls['new_password'])]);
+            if($user) {
+                return redirect()->route('admin.profile')->with(['toast' => 'success', 'msg' => 'Password updated successfully']);
+            } else {
+                return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to update Password']);
+            }
+        }
+
     }
 
    

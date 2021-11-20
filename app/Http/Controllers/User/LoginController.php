@@ -17,7 +17,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('user.login');
+        return view('User.login');
     }
 
     public function authenticate(Request $request)
@@ -70,7 +70,13 @@ class LoginController extends Controller
     }
 
     public function register(){
-        return view("user.register");
+        return view("User.register");
+    }
+
+    public function generate_referral_id(){
+        $max_id = User::max('referral_id');
+        $ref = !empty($max_id) ? ++$max_id : "1000";
+        return $ref;
     }
 
     public function create(Request $request){
@@ -80,6 +86,7 @@ class LoginController extends Controller
             "email" =>  "required|email|unique:users",
             "password" =>  "required|min:3",
             "contact" =>  "nullable|numeric",
+            "referral_code" => "nullable|numeric|exists:users,referral_id"
         ];
         $validator = Validator::make($controls,$rules);
         if($validator->fails()){
@@ -90,6 +97,8 @@ class LoginController extends Controller
                 "email" =>  $controls['email'],
                 "password" =>  bcrypt($controls['password']),
                 "contact" =>  $controls['contact'],
+                "referral_id"=>$this->generate_referral_id(),
+                "referred_by"=>$controls['referral_code'],
             ];
             $user = User::create($data);
             if($user->id){

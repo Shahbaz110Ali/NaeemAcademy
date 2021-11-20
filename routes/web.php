@@ -36,6 +36,7 @@ Route::get('test/result', [App\Http\Controllers\HomeController::class, 'result_t
 
 
 
+
 Route::get('/subject-details', [App\Http\Controllers\HomeController::class, 'subjectDetails'])->name('subjectDetails');
 
 Route::get('/quiz', [App\Http\Controllers\HomeController::class, 'Quiz'])->name('Quiz');

@@ -79,6 +79,17 @@
 																@enderror
 															</div>
 															<div class="form-group">
+																<label class="control-label mb-10" for="contact">Referral Code</label>
+																<div class="input-group">
+																	<input type="text" value="{{old('referral_code')}}" name="referral_code" class="form-control"  id="contact" placeholder="Enter referral code">
+																	<div class="input-group-addon"><i class="icon-phone"></i></div>
+																</div>
+																@error('referral_code')
+																	<span class="text-danger">{{ $message }}</span>
+																@enderror
+																
+															</div>
+															<div class="form-group">
 																<button type="submit" class="btn btn-success btn-block">sign up</button>
 															</div>
 															<div class="form-group mb-0">

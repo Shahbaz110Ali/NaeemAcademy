@@ -21,6 +21,9 @@ class User extends Authenticatable
         'email',
         'password',
         'contact',
+        'referral_id',
+        'referred_by',
+        'image',
         'status',
     ];
 

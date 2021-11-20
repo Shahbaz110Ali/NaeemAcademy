@@ -150,11 +150,11 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img
-                            src="{{ asset('Kenny/dist/img/user1.png')}}" alt="user_auth" class="user-auth-img img-circle" /><span
+                            src="{{asset('storage/img/admins/'.Auth::User()->image)}}" alt="user_auth" class="user-auth-img img-circle" /><span
                             class="user-online-status"></span></a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="{{route('admin.profile')}}"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-credit-card-alt"></i> my balance</a>
@@ -215,17 +215,25 @@
                     </ul>
                 </li>
                 <li>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#course_dr"><i class="icon-note mr-10"></i>Manage Courses <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="course_dr" class="collapse collapse-level-1">           
+                        <li>
+                            <a href="{{ route('admin.course.list') }}">Courses</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a   href="javascript:void(0);" data-toggle="collapse" data-target="#settings_dr"><i class="icon-settings mr-10"></i>Settings<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
                     <ul id="settings_dr" class="collapse collapse-level-1">
-                        
                         <li>
                             <a href="{{ route('settings.home.interface') }}">Home > Interface</a>
                         </li>
                         <li>
                             <a href="{{ route('settings.home.category') }}">Home > Category</a>
                         </li>
-                       
-                        
+                        <li>
+                            <a href="{{ route('settings.courses.description') }}">Courses > Description</a>
+                        </li>
                     </ul>
                 </li>
                 {{-- <li>
