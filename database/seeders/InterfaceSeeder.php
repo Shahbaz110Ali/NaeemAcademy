@@ -15,26 +15,45 @@ class InterfaceSeeder extends Seeder
      */
     public function run()
     {
+       
+        //=================
         $data[] = [
             'parent_id'=>null,
             'title'=>"FIA",
             'description'=>"The Federal Investigation Agency, being Pakistan’s premier investigation agency, deals with multifaceted serious and organized crimes like Immigration, Anti-human Trafficking, Anti-corruption, Protection of Intellectual Property Rights, Cyber Crime, Money Laundering etc. At the same time it is the lead agency for investigation of",
+            'homepage_visibility_layout' => 'bottom',
             'status'=>1,
         ];
         $data[] = [
             'parent_id'=>null,
             'title'=>"PST / JEST",
             'description'=>"As a school teacher, you'll develop schemes of work and lesson plans in line with curriculum objectives. You'll facilitate learning by establishing",
+            'homepage_visibility_layout' => 'bottom',
             'status'=>1,
         ];
         $data[] = [
             'parent_id'=>null,
             'title'=>"MOC",
             'description'=>"The traditional MOC exam is ABIM's enhanced 10-year exam. If you're interested in taking this exam, here's some quick information to help guide your",
+            'homepage_visibility_layout' => 'bottom',
             'status'=>1,
         ];
+        //===============
         for($i = 0; $i < 3; $i++){
             Category::create($data[$i]);
+        }
+
+        //creating top layout
+        for($i = 0; $i < 8; $i++){
+            Category::create([
+                'parent_id'=>null,
+                'title'=>"Top Interface ".($i+1),
+                'description'=>null,
+                'homepage_visibility_layout' => 'top',
+                'status'=>1,
+            ]);
+            
+            
         }
         
     }

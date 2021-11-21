@@ -5,55 +5,28 @@
     <section id="features" class="features">
         <div class="container" data-aos="fade-up">
             <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                <div class="col-lg-3 col-md-4">
+               @php
+               $color_index = 0;    
+               @endphp 
+               @forelse ($interfaces_top as $item)
+               <div class="col-lg-3 col-md-4">
                     <div class="icon-box">
                         <img src="" alt="">
-                        <i class="ri-book-read-line" style="color: #ffbb2c;"></i>
-                        <h3><a href="#">General Knowledge</a></h3>
+                        <i class="ri-book-read-line" style="color: {{$top_interface_color[$color_index]}};"></i>
+                        <h3><a href="{{ route('content', $item['id']) }}">{{$item['title']}}</a></h3>
                     </div>
+                    
                 </div>
-                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #5578ff;"></i>
-                        <h3><a href="">Current Affairs</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #e80368;"></i>
-                        <h3><a href="">English</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #e361ff;"></i>
-                        <h3><a href="">Mathematics</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #47aeff;"></i>
-                        <h3><a href="">Pakistan</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #ffa76e;"></i>
-                        <h3><a href="">Islamiat</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #11dbcf;"></i>
-                        <h3><a href="">Midela Teren</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 mt-4">
-                    <div class="icon-box">
-                        <i class="ri-book-read-line" style="color: #4233ff;"></i>
-                        <h3><a href="">Pira Neve</a></h3>
-                    </div>
-                </div>
+                @php
+                $color_index++;
+                if($color_index == count($top_interface_color)){
+                    $color_index = 0;
+                }    
+                @endphp
+               @empty
+                   Empty
+               @endforelse
+                
             </div>
         </div>
     </section>
@@ -71,7 +44,7 @@
                     data-aos-delay="100">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-                            @forelse ($interfaces as $item)
+                            @forelse ($interfaces_bottom as $item)
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-2 mt-xl-0">
                                     <img src="assets/img/test_preperations/jst_pst.png" alt="image" style="width:100px;">

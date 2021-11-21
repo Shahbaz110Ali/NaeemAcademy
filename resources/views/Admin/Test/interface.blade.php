@@ -26,6 +26,7 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Description</th>
+                                            <th>Homepage Layout</th>
                                             <th>Status</th>
                                             <th class="text-nowrap">Action</th>
                                         </tr>
@@ -35,6 +36,7 @@
                                         <tr>
                                             <td>{{$item['title']}}</td>
                                             <td>{{$item['description']}}</td>
+                                            <td>{{$item['homepage_visibility_layout']}}</td>
                                             <td>
                                                 @if($item['status'] == 1)
                                                 <span class="text-success">Active</span>    
