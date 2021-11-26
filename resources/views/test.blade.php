@@ -39,7 +39,7 @@
                 <div class="row">
                    
                     <div class="col-lg-12">
-                        
+                        @if(!empty($questions) && count($questions) > 0)
                         <form action="{{ route('test.submit') }}" method="POST" id="testSubmit">
                             @csrf
                             <input type="hidden" name="test_id" value="{{$test['id']}}">
@@ -71,7 +71,7 @@
                                     </div>
                                     
                                     @empty
-                                        <h6>Empty</h6>
+                                        <h6>No question available in this test.</h6>
                                     
                                     @endforelse
                                 </div>
@@ -89,9 +89,9 @@
                                         </ul>
                                     </nav>
                                 </div>
-                                <div id="submit-btnContainer">
-                                    
-                                </div>
+                               
+                               <div id="submit-btnContainer"></div>
+                               
                             </div>
                             @if ($test['duration'] > 0)
                             <div class="instructions-for-timer-test mt-2">
@@ -101,6 +101,11 @@
                             
 
                         </form>
+                        
+                        @else
+                        <h1>Currently no question available in this test.</h1>
+                       
+                        @endif
 
                     </div>
                 </div>

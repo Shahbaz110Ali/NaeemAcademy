@@ -29,6 +29,7 @@ class TestController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'homepage_visibility_layout' => 'required',
             'status' => 'required',
         ],$request->all());
         $interface = Category::create($validated);
@@ -44,6 +45,7 @@ class TestController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'homepage_visibility_layout' => 'required',
             'status' => 'required',
         ],$request->all());
         $interface = Category::where("id",$id)->update($validated);

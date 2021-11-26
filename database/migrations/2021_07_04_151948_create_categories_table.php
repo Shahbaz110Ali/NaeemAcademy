@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->Integer("parent_id")->nullable();
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
+            $table->string('homepage_visibility_layout')->nullable();
             $table->unsignedInteger('status')->default(1);
             $table->timestamps();
         });

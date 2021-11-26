@@ -35,7 +35,19 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Visibility on Hompage (Layout)</label>
+                                                        <select class="form-control" name="homepage_visibility_layout">
+                                                            <option value="none" {{ ((old('homepage_visibility_layout') == "none")?"selected":"" ) }}>None</option>    
+                                                            <option value="top" {{ ((old('homepage_visibility_layout') == "top")?"selected":"" ) }}>Top Layout</option>
+                                                            <option value="bottom" {{ ((old('homepage_visibility_layout') == "bottom")?"selected":"" ) }}>Bottom Layout</option>
+                                                        </select>
+                                                        @error('homepage_visibility_layout')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Status</label>

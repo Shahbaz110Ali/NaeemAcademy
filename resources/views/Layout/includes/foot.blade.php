@@ -10,10 +10,13 @@
 <script src="{{ asset('Kenny/dist/js/toast-data.js') }}"></script>
 
 <!-- Tinymce JavaScript -->
-<script src="{{asset('Kenny/vendors/bower_components/tinymce/tinymce.min.js')}}"></script>
+{{-- <script src="{{asset('Kenny/vendors/bower_components/tinymce/tinymce.min.js')}}"></script> --}}
 			
 <!-- Tinymce Wysuhtml5 Init JavaScript -->
-<script src="{{asset('Kenny/dist/js/tinymce-data.js')}}"></script>
+{{-- <script src="{{asset('Kenny/dist/js/tinymce-data.js')}}"></script> --}}
+
+<!-- Tinymce CKeditor  -->
+<script src="{{asset('assets/vendor/ckeditor/ckeditor.js')}}"></script>
 
 <!-- Slimscroll JavaScript -->
 <script src="{{ asset('Kenny/dist/js/jquery.slimscroll.js') }}"></script>
@@ -29,9 +32,12 @@
 <!-- Init JavaScript -->
 <script src="{{ asset('Kenny/dist/js/init.js') }}"></script>
 
+@yield('customScript')
+
 <script type="text/javascript">
     @if (session('toast'))
         toast_notification("{{ ucFirst(session('toast')) }}", "{{ session('msg') }}",
         "{{ session('toast') }}")
     @endif
 </script>
+

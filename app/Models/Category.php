@@ -12,6 +12,7 @@ class Category extends Model
         'parent_id',
         'title',
         'description',
+        'homepage_visibility_layout',
         'status',
     ];
 

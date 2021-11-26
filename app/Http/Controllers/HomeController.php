@@ -24,8 +24,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data['interfaces'] = Category::where(["parent_id"=>null,"status"=>"1"])->get()->toArray();
-
+        $data['interfaces_top'] = Category::where(["parent_id"=>null,"homepage_visibility_layout"=>"top","status"=>"1"])->get()->toArray();
+        $data['interfaces_bottom'] = Category::where(["parent_id"=>null,"homepage_visibility_layout"=>"bottom","status"=>"1"])->get()->toArray();
+        $data['top_interface_color'] = ["#5578ff","#e80368","#e361ff","#47aeff","#ffa76e","#11dbcf","#4233ff"];
+        
         return view('welcome',$data);
     }
 
