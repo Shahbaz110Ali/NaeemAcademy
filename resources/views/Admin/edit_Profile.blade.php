@@ -1,5 +1,6 @@
 @extends("Layout.Admin.master")
 
+
 @section('content')
 <div class="container-fluid bootstrap snippet">
   <br><br>

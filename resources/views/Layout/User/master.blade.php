@@ -150,7 +150,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img
-                            src="{{ asset('Storage/img/users/'.Auth::User()->image)}}" alt="user_auth" class="user-auth-img img-circle" /><span
+                            src="{{ asset('storage/img/users/'.Auth::User()->image)}}" alt="user_auth" class="user-auth-img img-circle" /><span
                             class="user-online-status"></span></a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                         <li>
