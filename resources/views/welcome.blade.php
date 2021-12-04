@@ -9,7 +9,7 @@
                $color_index = 0;    
                @endphp 
                @forelse ($interfaces_top as $item)
-               <div class="col-lg-3 col-md-4">
+               <div class="col-lg-3 col-md-4 mt-2">
                     <div class="icon-box">
                         <img src="" alt="">
                         <i class="ri-book-read-line" style="color: {{$top_interface_color[$color_index]}};"></i>
@@ -45,7 +45,7 @@
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
                             @forelse ($interfaces_bottom as $item)
-                            <div class="col-xl-4 d-flex align-items-stretch">
+                            <div class="col-xl-4 d-flex align-items-stretch mt-2">
                                 <div class="icon-box mt-2 mt-xl-0">
                                     <img src="assets/img/test_preperations/jst_pst.png" alt="image" style="width:100px;">
                                     <h4 class="mt-2"><a href="{{ route('content', $item['id']) }}">{{$item['title']}}</a></h4>

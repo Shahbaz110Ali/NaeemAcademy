@@ -28,7 +28,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Description</label>
-                                                        <textarea name="description" class="form-control" rows="3"
+                                                        <textarea name="description" class="form-control summernote" rows="3"
                                                             placeholder="More about this interface..">{{ old('description') }}</textarea>
                                                         @error('description')
                                                             <span class="text-danger">{{ $message }}</span>

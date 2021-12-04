@@ -20,4 +20,8 @@ class Course extends Model
         "status",
     ];
     
+
+    public function buy_request(){
+        return $this->belongsTo('App\Models\BuyRequest');
+    }
 }

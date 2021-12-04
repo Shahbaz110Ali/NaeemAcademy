@@ -18,7 +18,7 @@ class CreateBuyRequestsTable extends Migration
             $table->integer("user_id");
             $table->integer("course_id");
             $table->string("payment_method")->nullable();
-            $table->string("payment_date")->nullable();
+            $table->date("payment_date")->nullable();
             $table->string("amount_paid")->nullable();
             $table->string("image_proof")->nullable();
             $table->integer("status")->default(0);

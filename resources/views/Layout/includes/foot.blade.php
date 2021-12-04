@@ -9,14 +9,12 @@
 <script src="{{ asset('Kenny/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js') }}"></script>
 <script src="{{ asset('Kenny/dist/js/toast-data.js') }}"></script>
 
-<!-- Tinymce JavaScript -->
-{{-- <script src="{{asset('Kenny/vendors/bower_components/tinymce/tinymce.min.js')}}"></script> --}}
+<!-- Summernote JavaScript -->
+<script src="{{asset('Kenny/vendors/bower_components/summernote/dist/summernote.min.js')}}"></script>
 			
-<!-- Tinymce Wysuhtml5 Init JavaScript -->
-{{-- <script src="{{asset('Kenny/dist/js/tinymce-data.js')}}"></script> --}}
+<!-- Summernote Init JavaScript -->
+<script src="{{asset('Kenny/dist/js/summernote-data.js')}}"></script>
 
-<!-- Tinymce CKeditor  -->
-<script src="{{asset('assets/vendor/ckeditor/ckeditor.js')}}"></script>
 
 <!-- Slimscroll JavaScript -->
 <script src="{{ asset('Kenny/dist/js/jquery.slimscroll.js') }}"></script>

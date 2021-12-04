@@ -29,5 +29,6 @@ Route::middleware('auth:web')->group(function () {
     
     Route::get("course/buy/{id}",[\App\Http\Controllers\User\CourseController::class,"buy_course"])->name("user.course.buy");
     Route::post("course/buy",[\App\Http\Controllers\User\CourseController::class,"purchase_course"])->name("user.course.purchase");
-    Route::get("purchase/request/list",[\App\Http\Controllers\User\CourseController::class,"purchase_req_list"])->name('user.course.request.list');
+    Route::get("course/request/list",[\App\Http\Controllers\User\CourseController::class,"purchase_req_list"])->name('user.course.request.list');
+    Route::post("course/request/list/filter",[\App\Http\Controllers\User\CourseController::class,"purchase_req_list_filter"])->name('user.course.request.list.filter');
 });
