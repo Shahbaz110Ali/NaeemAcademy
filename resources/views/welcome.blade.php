@@ -9,7 +9,7 @@
                $color_index = 0;    
                @endphp 
                @forelse ($interfaces_top as $item)
-               <div class="col-lg-3 col-md-4">
+               <div class="col-lg-3 col-md-4 my-2">
                     <div class="icon-box">
                         <img src="" alt="">
                         <i class="ri-book-read-line" style="color: {{$top_interface_color[$color_index]}};"></i>
