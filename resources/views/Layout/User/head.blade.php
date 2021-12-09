@@ -8,7 +8,6 @@
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 	<!-- Data table CSS -->
 	<link href="../Kenny/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
