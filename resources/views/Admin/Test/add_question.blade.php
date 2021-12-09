@@ -22,7 +22,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Question</label>
-                                                        <textarea  class="tinymce form-control" name="question" id="question"
+                                                        <textarea  class="form-control summernote" name="question" id="question"
                                                             placeholder="Question">{{ old("question") }}</textarea>
                                                             
                                                         @error('question')
@@ -38,7 +38,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Option {{$i}}</label>
-                                                        <textarea  class="form-control" name="option{{$i}}"
+                                                        <textarea  class="form-control summernote" name="option{{$i}}"
                                                             placeholder="option" id="{{"option_".$i}}">{{ old('option'.$i) }}</textarea>
                                                         @error('option'.$i)
                                                             <span class="text-danger">{{ $message }}</span>
@@ -69,7 +69,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Explanation</label>
-                                                        <textarea  class="tinymce form-control" name="explanation" id="explanation"
+                                                        <textarea  class="form-control summernote" name="explanation" id="explanation"
                                                             placeholder="explanation">{{ old("explanation") }}</textarea>
                                                            
                                                             
@@ -146,37 +146,6 @@
             }
         });
     </script>
-    
-    <script>
-
-        ClassicEditor.create( document.querySelector( '#question' ), {
-                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-            } ).then( editor => {
-                window.editor = editor;
-            } ).catch( err => {
-                console.error( err.stack );
-            } );
-    
-        ClassicEditor.create( document.querySelector( '#explanation' ), {
-            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-        } ).then( editor => {
-            window.editor = editor;
-        } ).catch( err => {
-            console.error( err.stack );
-        } );
-    
-        for(var i = 1; i <= $("#total_options").val(); i++){
-            ClassicEditor.create( document.querySelector( '#option_'+i ), {
-            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-            } ).then( editor => {
-                window.editor = editor;
-            } ).catch( err => {
-                console.error( err.stack );
-            } );
-        }
-    
-        
-        </script>
 @endpush
 
 

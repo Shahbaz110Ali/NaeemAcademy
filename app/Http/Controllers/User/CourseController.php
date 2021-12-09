@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 use App\Models\Category;
@@ -18,6 +19,8 @@ use App\Models\TestUser;
 use App\Models\TestUserQuestion;
 use App\Models\Course;
 use App\Models\BuyRequest;
+
+use Carbon\Carbon;
 
 
 
@@ -35,9 +38,11 @@ class CourseController extends Controller
         $user   =  User::where("id",Auth::user()->id)->first()->toArray(); 
         
         $alreadyBought = BuyRequest::where(["user_id"=>Auth::user()->id,"course_id"=>$controls['course_id']])->get()->toArray();
-        if(!is_null($alreadyBought) || !empty($alreadyBought)){
+        if(!empty($alreadyBought)){
             return redirect(route("user.course.request.list"))->with(['toast' => 'error', 'msg' => 'You have already requested this course']);
         }
+
+
         $rules =  [
                 'user_id' => 'required',
                 'course_id' => 're quired',
@@ -69,7 +74,7 @@ class CourseController extends Controller
             }
             
             if(BuyRequest::create($data)) {
-                return redirect()->route('user')->with(['toast' => 'success', 'msg' => 'Buy Request sent. Admin will contact you shortly']);
+                return redirect()->route('user.course.request.list')->with(['toast' => 'success', 'msg' => 'Buy Request sent. Admin will contact you shortly']);
             } else {
                 return redirect()->back()->with(['toast' => 'error', 'msg' => 'Failed to create Buy Request']);
             }
@@ -77,6 +82,40 @@ class CourseController extends Controller
     }
 
     public function purchase_req_list(){
-        dd("here purchase list will be placed");
+        if(Session::has("filtered")){
+            $data['req_list'] = Session::get("filtered")['req_list'];
+            $data['from_date'] = Session::get("filtered")['from_date'];
+            $data['to_date'] = Session::get("filtered")['to_date'];
+        }else{
+            $data['req_list'] = BuyRequest::with("course")->where("user_id",Auth::user()->id)->get()->toArray();
+        }
+
+        return view("User.Course.buy_course_list",$data);
+        
+    }
+
+    public function purchase_req_list_filter(Request $request){
+        $controls = $request->all();
+
+        $rules =  [
+            'from_date' => 'required|date',
+            'to_date' => 'required|date|after_or_equal:from_date',
+        ];
+        $validator = Validator::make($controls,$rules);
+        
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else{         
+            $from= Carbon::parse($controls['from_date']);
+            $to = Carbon::parse($controls['to_date']);
+         
+            $data['req_list'] = BuyRequest::with("course")->whereDate('payment_date','<=',$to->format('Y-m-d'))
+                ->whereDate('payment_date','>=',$from->format('Y-m-d'))->where("user_id",Auth::user()->id)->get()->toArray();
+
+            $data['from_date'] = $controls['from_date'];
+            $data['to_date'] = $controls['to_date'];
+            return redirect(route("user.course.request.list"))->with("filtered",$data);
+        }
+       
     }
 }

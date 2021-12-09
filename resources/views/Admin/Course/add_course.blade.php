@@ -43,7 +43,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Course Description</label>
-                                                        <textarea name="course_description" class="form-control" rows="3"
+                                                        <textarea name="course_description" class="form-control summernote" rows="3"
                                                             placeholder="More about this course..">{{ old('course_description') }}</textarea>
                                                         @error('course_description')
                                                             <span class="text-danger">{{ $message }}</span>
@@ -66,7 +66,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Discount %</label>
-                                                        <input type="number" class="form-control" name="course_discount"
+                                                        <input type="number" class="form-control" min="0" max="100" name="course_discount"
                                                             placeholder="Discount %"
                                                             value = "0"
                                                             value="{{ old('course_discount') }}">

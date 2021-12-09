@@ -120,7 +120,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Payment Date</label>
-                                                        <input type="text" class="form-control" name="payment_date"
+                                                        <input type="date" class="form-control" name="payment_date"
                                                             placeholder="Payment Date"
                                                             value="{{ old('payment_date') }}">
                                                         @error('payment_date')

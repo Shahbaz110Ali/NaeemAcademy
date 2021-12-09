@@ -19,6 +19,9 @@
 
     <link href="{{ asset('Kenny/vendors/bower_components/sweetalert/dist/sweetalert.css') }}"
     rel="stylesheet" type="text/css">
+
+    <link href="{{ asset('Kenny/vendors/bower_components/summernote/dist/summernote.css') }}"
+    rel="stylesheet" type="text/css">
     
     @stack('links')
     <!-- Custom CSS -->

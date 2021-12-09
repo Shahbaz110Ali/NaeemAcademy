@@ -150,7 +150,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img
-                            src="{{ asset('Storage/img/users/'.Auth::User()->image)}}" alt="user_auth" class="user-auth-img img-circle" /><span
+                            src="{{ asset('storage/img/users/'.Auth::User()->image)}}" alt="user_auth" class="user-auth-img img-circle" /><span
                             class="user-online-status"></span></a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                         <li>
@@ -200,14 +200,25 @@
                 </li>
                 
                 <li>
-                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-note mr-10"></i>My Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-                    <ul id="dashboard_dr" class="collapse collapse-level-1">
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#tests"><i class="icon-note mr-10"></i>My Tests <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="tests" class="collapse collapse-level-1">
                         <li>
                             <a href="{{ route('user.availabletests') }}">Available Tests</a>
                         </li>
                         <li>
                             <a href="{{ route('user.takentests') }}">Attempted Tests</a>
                         </li>
+                        
+                    </ul>
+                </li>
+
+                <li>
+                    <a   href="javascript:void(0);" data-toggle="collapse" data-target="#courses"><i class="icon-note mr-10"></i>My Courses <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+                    <ul id="courses" class="collapse collapse-level-1">
+                        <li>
+                            <a href="{{ route('user.course.request.list') }}">Requested Courses</a>
+                        </li>
+                       
                         
                     </ul>
                 </li>
