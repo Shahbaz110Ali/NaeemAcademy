@@ -7,7 +7,7 @@
 	<meta name="author" content=""/>
 	
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
+	{{-- <link rel="shortcut icon" href="favicon.ico"> --}}
 
 	<!-- Data table CSS -->
 	<link href="../Kenny/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
