@@ -4,7 +4,7 @@
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
         <div class="container" data-aos="fade-up">
-            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row my-5" data-aos="zoom-in" data-aos-delay="100">
                @php
                $color_index = 0;    
                @endphp 
@@ -83,7 +83,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                        <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                        <img src="assets/img/Banner.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
                         <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
