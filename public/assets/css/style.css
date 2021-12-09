@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo img {
-  max-height: 40px;
+  max-height: 50px;
 }
 
 /**
@@ -1594,4 +1594,16 @@ section {
 }
 .pagination .current-page.active a:hover{
   background-color: #4aca82;
+}
+/* Noman CSS */
+.col-lg-6.pt-4.pt-lg-0.order-2.order-lg-1.content{
+  padding-top: 112px !important;
+}
+.col-lg-6.order-1.order-lg-2.aos-init.aos-animate img.img-fluid {
+  height: 87%;
+  width: 93%;
+  max-width: 95%;
+}
+.courses{
+  padding-bottom: 199px;
 }
