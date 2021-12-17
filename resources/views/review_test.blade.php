@@ -144,7 +144,7 @@ function simpleTemplating(data) {
     $.each(data, function(index, item){     
         html += '<div class="">';
         html += ' <h3>Question '+item.sr+' :-</h3>';
-        html += '<p><b>'+item.question+'</b></p>';
+        html += '<p>'+item.question+'</p>';
         
         
         
@@ -167,7 +167,7 @@ function simpleTemplating(data) {
             
             html += '<div class="form-check">';
             html += '<input disabled '+checked+' class="form-check-input" type="radio" name="question['+item.id+']" id="question_'+item.sr+'_option_'+ op+'" value="'+op+'">';
-            html += '<label class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</label>';
+            html += '<p class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</p>';
             html += '</div>';
          });
          if(item.explanation != null){

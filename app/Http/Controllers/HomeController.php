@@ -70,7 +70,7 @@ class HomeController extends Controller
 
     public function take_test($id){
        
-        $data['test'] = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
+        $data['test'] = Test::where(["id"=>$id])->get()->toArray()[0];
         $data['questions'] = Question::where(["test_id"=>$id,"status"=>1])->get();
        
         if($data['test']['type'] == "practice"){
