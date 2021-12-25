@@ -10,10 +10,12 @@
 <script src="{{ asset('Kenny/dist/js/toast-data.js') }}"></script>
 
 <!-- Summernote JavaScript -->
-<script src="{{asset('Kenny/vendors/bower_components/summernote/dist/summernote.min.js')}}"></script>
+{{-- <script src="{{asset('Kenny/vendors/bower_components/summernote/summernote.min.js')}}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 			
 <!-- Summernote Init JavaScript -->
 <script src="{{asset('Kenny/dist/js/summernote-data.js')}}"></script>
+
 
 
 <!-- Slimscroll JavaScript -->

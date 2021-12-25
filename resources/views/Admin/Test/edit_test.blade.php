@@ -127,7 +127,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-12">
+                                                {{-- <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Categories</label>
                                                         <select name="langOpt[]" multiple id="langOpt">
@@ -148,7 +148,7 @@
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <!-- /Row -->
                                             <div class="seprator-block"></div>
