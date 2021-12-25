@@ -1,5 +1,8 @@
 @extends("Layout.Admin.master")
 
+@push('links')
+@endpush
+
 @section('content')
     <!-- Row -->
     <div class="row">
@@ -123,6 +126,29 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+
+                                                {{-- <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Categories</label>
+                                                        <select name="langOpt[]" multiple id="langOpt">
+                                                            <option value="C++">C++</option>
+                                                            <option value="C#">C#</option>
+                                                            <option value="Java">Java</option>
+                                                            <option value="Objective-C">Objective-C</option>
+                                                            <option value="JavaScript">JavaScript</option>
+                                                            <option value="Perl">Perl</option>
+                                                            <option value="PHP">PHP</option>
+                                                            <option value="Ruby on Rails">Ruby on Rails</option>
+                                                            <option value="Android">Android</option>
+                                                            <option value="iOS">iOS</option>
+                                                            <option value="HTML">HTML</option>
+                                                            <option value="XML">XML</option>
+                                                        </select>
+                                                        @error('status')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div> --}}
                                             </div>
                                             <!-- /Row -->
                                             <div class="seprator-block"></div>
@@ -173,6 +199,7 @@
 
 @push('scripts')
     <script>
+       
         $("#set_duration").change(function() {
             if($(this).prop('checked')) {
                 $("#duration").attr('disabled', false);
@@ -181,6 +208,7 @@
                 $("#duration").attr('disabled', true);
             }
         });
+
     </script>
 @endpush
 

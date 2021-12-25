@@ -58,14 +58,14 @@
                                     
                                     <div class="list-group">
                                         <h4>Question {{ ++$count }} :-</h4>
-                                        <p><b>{!! $item['question'] !!}</b></p>
+                                        <p>{!! $item['question'] !!}</p>
                                         @php
                                             $options = json_decode($item['option']);
                                         @endphp
                                         @for ($i = 1; $i <= count($options); $i++)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="question[{{$item['id']}}]" id="question_{{ $count }}_option_{{ $i }}" value="{{$i}}">
-                                                <label class="form-check-label" for="question_{{ $count }}_option_{{ $i }}">{!! $options[$i-1] !!}</label>
+                                                <p for="question_{{ $count }}_option_{{ $i }}">{!! $options[$i-1] !!}</p>
                                             </div>
                                         @endfor  
                                     </div>

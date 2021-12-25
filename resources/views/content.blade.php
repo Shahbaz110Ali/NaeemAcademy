@@ -35,11 +35,13 @@
                             @endif
 
                             @if(!empty($tests))
+           
                             <div class="col-lg-6 col-md-6 col-md-12 subjects">
                                 <h5>Tests</h5>
                                 <ul>
                                     @foreach ($tests as $item)
-                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ route('test.take', $item['id']) }}">{{$item['name']}}</a></li>
+                                   
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ ($item['type'] ==  "competition") ?  route('user.test.take', $item['id']) : route('test.take', $item['id']) }}">{{$item['name']}}</a></li>
                                     
                                     @endforeach
                                    

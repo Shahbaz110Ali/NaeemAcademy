@@ -22,7 +22,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Question</label>
+                                                        <label class="control-label"><b>Question</b></label>
                                                         <textarea  class="form-control summernote" name="question" id=""
                                                             placeholder="Question">{{ $question['question'] }}</textarea>
                                                             
@@ -43,7 +43,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Option {{$i}}</label>
-                                                        <textarea  class="form-control summernote"name="option{{$i}}"
+                                                        <textarea  class="form-control summernote" name="option{{$i}}"
                                                             placeholder="option" id="{{'option_'.$i}}">{{$op}}</textarea>
                                                         @error('option'.$i)
                                                             <span class="text-danger">{{ $message }}</span>

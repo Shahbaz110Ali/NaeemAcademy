@@ -58,11 +58,11 @@ class HomeController extends Controller
         return view('contact');
     }
 
-    public function content($id) {
+    public function content($id) { //this code to display tests and categories on home
         // $id = base64_decode($id);
         $data['parent'] = Category::where("id",$id)->get()->toArray()[0];
         $data['categories'] = Category::where("parent_id",$id)->get()->toArray();
-        $data['tests'] = Test::where(["category_id"=>$id,"type"=>"practice"])->get()->toArray();
+        $data['tests'] = Test::where(["category_id"=>$id])->get()->toArray();
         // dd($tests);
 
         return view('content',$data);
@@ -70,19 +70,13 @@ class HomeController extends Controller
 
     public function take_test($id){
        
-        $data['test'] = Test::where(["id"=>$id,"status"=>1])->get()->toArray()[0];
+        $data['test'] = Test::where(["id"=>$id])->get()->toArray()[0];
         $data['questions'] = Question::where(["test_id"=>$id,"status"=>1])->get();
        
         if($data['test']['type'] == "practice"){
             return view('test', $data);
-        }else if($data['test']['type'] == "competition"){
-            if(Auth::check()){
-                return view('test',$data);
-            }else{
-                return redirect(route("user.signin"));
-            }
         }
-        // dd($data);
+       
         
     }
 
