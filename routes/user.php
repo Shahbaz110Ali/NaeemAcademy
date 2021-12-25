@@ -14,6 +14,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/', [App\Http\Controllers\User\UserController::class, 'dashboard'])->name('user');
     Route::get('tests/taken', [App\Http\Controllers\User\UserController::class, 'taken_tests'])->name('user.takentests');
     Route::get('tests/available', [App\Http\Controllers\User\UserController::class, 'available_tests'])->name('user.availabletests');
+    Route::get('take/test/{test_id}', [App\Http\Controllers\User\UserController::class, 'take_test'])->name('user.test.take');
+    
     /** Test Routes */
     // Route::get('interface', [App\Http\Controllers\Admin\TestController::class, 'interface'])->name('admin.interface');
     // Route::get('interface/add', [App\Http\Controllers\Admin\TestController::class, 'interface_add'])->name('admin.interface.add');
