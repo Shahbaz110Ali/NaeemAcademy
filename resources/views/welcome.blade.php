@@ -86,25 +86,20 @@
                         <img src="assets/img/Banner.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                        <h3>General Jobs Preparation</h3>
                         <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
+                            IBA, FPSC,SPSC,PTS,NTS
+                            Bps-5-15 and 17 grade jobs.
                         </p>
                         <ul>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</li>
-                            <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</li>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                                mastiro dolore eu fugiat nulla pariatur.</li>
+                            <li><i class="bi bi-check-circle"></i> We are specialized in Prepration of every Govt Jobs Test.</li>
+                            <li><i class="bi bi-check-circle"></i> Qualified and expert faculty combination of teaching experience.</li>
+                            <li><i class="bi bi-check-circle"></i> Regular test for assessment of strength and weakness for better preparation.</li>
                         </ul>
-                        <p>
+                        {{-- <p>
                             Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                             reprehenderit in voluptate
-                        </p>
+                        </p> --}}
 
                     </div>
                 </div>
