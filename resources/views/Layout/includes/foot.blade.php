@@ -15,8 +15,11 @@
 			
 <!-- Summernote Init JavaScript -->
 <script src="{{asset('Kenny/dist/js/summernote-data.js')}}"></script>
+    <!-- Multiselect JavaScript -->
+    <!-- <script src="{{ asset('Kenny/vendors/bower_components/multiselect/js/jquery.multi-select.js') }}"></script> -->
 
-
+				<!-- Select2 JavaScript -->
+                <script src="{{ asset('Kenny/vendors/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 <!-- Slimscroll JavaScript -->
 <script src="{{ asset('Kenny/dist/js/jquery.slimscroll.js') }}"></script>

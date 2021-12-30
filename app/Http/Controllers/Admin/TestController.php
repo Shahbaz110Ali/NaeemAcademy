@@ -161,7 +161,8 @@ class TestController extends Controller
     }
 
     public function test_add($category_id) {
-        $data["category"] = Category::where("id",$category_id)->get()->toArray()[0];
+        $data['categories'] = Category::all();
+        $data["Parentcategory"] = Category::where("id",$category_id)->get()->toArray()[0];
         return view("Admin.Test.add_test",$data);
     }
 
@@ -169,6 +170,8 @@ class TestController extends Controller
         $controls = $request->all();
         $rules = [
             "category_id"=> "required",
+            "categories" => "required|min:1",
+            "categories.*" => "required",
             "name" =>  "required",
             "total_options" =>  "required|min:1",
             'q_per_page'=> 'required',
@@ -178,6 +181,7 @@ class TestController extends Controller
             "type" =>  "required",
             'status' => "required",
         ];
+
         $validator = Validator::make($controls,$rules);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
