@@ -63,10 +63,16 @@
                                             $options = json_decode($item['option']);
                                         @endphp
                                         @for ($i = 1; $i <= count($options); $i++)
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="question[{{$item['id']}}]" id="question_{{ $count }}_option_{{ $i }}" value="{{$i}}">
-                                                <p for="question_{{ $count }}_option_{{ $i }}">{!! $options[$i-1] !!}</p>
+                                            <div class="d-flex">
+                                                <div class="" style="font-size: 25px;font-weight: bold;">{{chr($i+96)}} ;</div>
+                                                <div class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input" type="radio" name="question[{{$item['id']}}]" id="question_{{ $count }}_option_{{ $i }}" value="{{$i}}">
+                                                    <label for="question_{{ $count }}_option_{{ $i }}" class="px-4">
+                                                        <p >{!! $options[$i-1] !!}</p>
+                                                    </label>
+                                                </div>
                                             </div>
+                                            
                                         @endfor  
                                     </div>
                                     
