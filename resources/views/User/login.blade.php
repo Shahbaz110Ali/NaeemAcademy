@@ -56,7 +56,8 @@
 																	<input id="checkbox_2" name="remember" type="checkbox">
 																	<label for="checkbox_2"> keep me logged in </label>
 																</div>
-																<a class="capitalize-font txt-danger block pt-5 pull-right" href="#">forgot password</a>
+																
+																<a class="capitalize-font txt-danger block pt-5 pull-right" href="{{ route('forget.password.get') }}">forgot password</a>
 																<div class="clearfix"></div>
 															</div>
 															<div class="form-group">
