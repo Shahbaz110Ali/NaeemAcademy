@@ -85,6 +85,7 @@ class AdminController extends Controller
             $ob_marks = ($plus - $minus);
             $percentage = (($ob_marks / $max) * 100);
 
+            $data['users'][$key]['per']=$percentage;
             $data['users'][$key]['test_info'] = [
                 "test_id"=>$data['test']['id'],
                 'min'=>$min,
@@ -103,11 +104,9 @@ class AdminController extends Controller
                 
             ];
 
-            //==============
-
         }
-        
-
+        $per = array_column($data['users'],'per');
+        array_multisort($per,SORT_DESC,$data['users']);
         // dd($data);
         return view("Admin.Test.competition_participants",$data);
     }
