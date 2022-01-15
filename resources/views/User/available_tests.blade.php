@@ -66,7 +66,7 @@
                                             
                                             <td class="text-nowrap">
                      
-                                                <a href="{{route("test.take",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
+                                                <a href="{{route("user.test.take",$item['id'])}}" class="mr-25" data-toggle="tooltip" data-original-title="View">
                                                     <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                               
                                             </td>

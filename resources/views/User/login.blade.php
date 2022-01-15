@@ -18,6 +18,11 @@
 						<div class="table-cell vertical-align-middle">
 							<div class="auth-form  ml-auto mr-auto no-float">
 								<div class="panel panel-default card-view mb-0">
+								@if (Session::has('message'))
+                                        <div class="alert alert-success" role="alert">
+                                        {{ Session::get('message') }}
+                                        </div>
+                                    @endif
 									<div class="panel-heading">
 										<div class="pull-left">
 											<h6 class="panel-title txt-dark">Sign In</h6>
@@ -56,7 +61,8 @@
 																	<input id="checkbox_2" name="remember" type="checkbox">
 																	<label for="checkbox_2"> keep me logged in </label>
 																</div>
-																<a class="capitalize-font txt-danger block pt-5 pull-right" href="#">forgot password</a>
+																
+																<a class="capitalize-font txt-danger block pt-5 pull-right" href="{{ route('forget.password.get') }}">forgot password</a>
 																<div class="clearfix"></div>
 															</div>
 															<div class="form-group">
