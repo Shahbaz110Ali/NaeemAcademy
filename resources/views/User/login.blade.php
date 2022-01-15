@@ -18,6 +18,11 @@
 						<div class="table-cell vertical-align-middle">
 							<div class="auth-form  ml-auto mr-auto no-float">
 								<div class="panel panel-default card-view mb-0">
+								@if (Session::has('message'))
+                                        <div class="alert alert-success" role="alert">
+                                        {{ Session::get('message') }}
+                                        </div>
+                                    @endif
 									<div class="panel-heading">
 										<div class="pull-left">
 											<h6 class="panel-title txt-dark">Sign In</h6>
