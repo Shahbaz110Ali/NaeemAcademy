@@ -52,4 +52,6 @@ class Test extends Model
     {
         return $this->belongsToMany("App\Models\User","test_users");
     }
+
+    
 }

@@ -167,6 +167,8 @@ class TestController extends Controller
     }
 
     public function test_store(Request $request) {
+
+        dd($request);
         $controls = $request->all();
         $rules = [
             "category_id"=> "required",
