@@ -62,9 +62,10 @@ class HomeController extends Controller
         // $id = base64_decode($id);
         $data['parent'] = Category::where("id",$id)->get()->toArray()[0];
         $data['categories'] = Category::where("parent_id",$id)->get()->toArray();
-        $data['tests'] = Test::where(["category_id"=>$id])->get()->toArray();
-        // dd($tests);
-
+        $data['tests'] = Test::with('categories')->whereHas('categories',function($query) use ($id){
+            $query->where('category_id','=',$id);
+        })
+        ->get()->toArray();
         return view('content',$data);
     }
 

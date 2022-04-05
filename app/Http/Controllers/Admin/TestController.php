@@ -168,7 +168,6 @@ class TestController extends Controller
 
     public function test_store(Request $request) {
 
-        dd($request);
         $controls = $request->all();
         $rules = [
             "category_id"=> "required",
@@ -203,7 +202,9 @@ class TestController extends Controller
                 'status' => $controls['status'],
             ];
             $test = Test::create($data);
-
+            $test->categories()->sync($request->categories);
+            // $test->test_category->create(['category_id' =>'13']);
+            // dd($test);
             if($test->id) {
                 return redirect()->route('admin.category', $controls["category_id"])->with(['toast' => 'success', 'msg' => 'Test created successfully']);
             } else {
@@ -216,8 +217,9 @@ class TestController extends Controller
     }
 
     public function test_edit($id) {
-        $test = Test::find($id)->toArray();
-        return view('Admin.Test.edit_test', compact('test'));
+        $data['test'] = Test::with('categories')->find($id)->toArray();
+        $data['categories'] = Category::all();
+        return view('Admin.Test.edit_test', $data);
     }
 
     public function test_save(Request $request){
@@ -252,6 +254,8 @@ class TestController extends Controller
                 'status' => $controls['status'],
             ];
             $test = Test::where("id",$controls['id'])->update($data);
+            $test = Test::find($controls['id']);
+            $test->categories()->sync($request->categories);
             if($test) {
                 return redirect()->route('admin.category', $controls["category_id"])->with(['toast' => 'success', 'msg' => 'Test updated successfully']);
             } else {

@@ -1,6 +1,7 @@
 @extends("Layout.Admin.master")
 
 @push('links')
+
 @endpush
 
 @section('content')
@@ -96,6 +97,33 @@
                                                         @enderror
                                                     </div>
                                                     
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group ">
+                                                        <label class="control-label mb-8">Categories</label>
+                                                        
+                                                        <select class="select2 select2-multiple" multiple="multiple" data-placeholder="Choose" name="categories[]">
+                                                            @foreach($categories as $category)
+                                                                @php 
+                                                                    $selected = false;  
+                                                                @endphp
+
+                                                                @foreach($test['categories'] as $selected_category)
+                                                                    @php 
+                                                                        if($selected_category['id'] == $category->id){
+                                                                            $selected = true;
+                                                                        }
+                                                                    @endphp
+                                                                @endforeach
+                                                                
+                                                                 <option value="{{ $category->id }}" {{  ($selected == true )  ? 'selected' : '' }} > {{ $category->title }} </option> 
+
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -200,6 +228,7 @@
 @push('scripts')
     <script>
        
+       $(".select2").select2();
         $("#set_duration").change(function() {
             if($(this).prop('checked')) {
                 $("#duration").attr('disabled', false);
@@ -210,6 +239,9 @@
         });
 
     </script>
+
+
+
 @endpush
 
 
