@@ -165,9 +165,9 @@ function simpleTemplating(data) {
             
             
             
-            html += '<div class="form-check">';
+            html += '<div class="form-check '+textcolor+'">';
             html += '<input disabled '+checked+' class="form-check-input" type="radio" name="question['+item.id+']" id="question_'+item.sr+'_option_'+ op+'" value="'+op+'">';
-            html += '<p class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</p>';
+            html += '<div class="'+textcolor+' ><p class="'+textcolor+' form-check-label" for="question_'+item.sr+'_option_'+op+'">'+option+'</p></div>';
             html += '</div>';
          });
          if(item.explanation != null){
