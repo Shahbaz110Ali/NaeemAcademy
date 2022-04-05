@@ -203,6 +203,7 @@ class TestController extends Controller
                 'status' => $controls['status'],
             ];
             $test = Test::create($data);
+
             if($test->id) {
                 return redirect()->route('admin.category', $controls["category_id"])->with(['toast' => 'success', 'msg' => 'Test created successfully']);
             } else {
