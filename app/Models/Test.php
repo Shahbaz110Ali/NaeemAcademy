@@ -37,8 +37,15 @@ class Test extends Model
     // }
 
     public function categories() {
-        return $this->belongsTo("App\Models\Category");
+        return $this->belongsToMany("App\Models\Category",'test_categories');
     }
+
+
+    // public function test_category() {
+    //     return $this->hasMany("App\Models\TestCategory","test_id","id");
+    // }
+
+    
 
     public function track_tests() {
         return $this->hasMany("App\Models\TrackTest","test_id","id");
@@ -52,4 +59,6 @@ class Test extends Model
     {
         return $this->belongsToMany("App\Models\User","test_users");
     }
+
+    
 }

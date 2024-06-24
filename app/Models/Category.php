@@ -16,8 +16,13 @@ class Category extends Model
         'status',
     ];
 
+    // public function tests() {
+    //     return $this->hasMany('App\Models\Test', 'category_id','id');
+    // }
+
+
     public function tests() {
-        return $this->hasMany('App\Models\Test', 'category_id','id');
+        return $this->belongsToMany('App\Models\Test','test_categories');
     }
 
     public function child() {

@@ -12,10 +12,10 @@
                                 <div class="form-wrap">
                                     <form action="{{ route('admin.test.store') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="category_id" value="{{$category['id']}}">
+                                        <input type="hidden" name="category_id" value="{{$Parentcategory['id']}}">
 
                                         <div class="form-body">
-                                            <h6 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Test details for ({{$category['title']}})</h6>
+                                            <h6 class="txt-dark capitalize-font"><i class="icon-pencil mr-10"></i>Test details for ({{$Parentcategory['title']}})</h6>
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -94,6 +94,19 @@
                                                     
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group ">
+                                                        <label class="control-label mb-8">Categories</label>
+                                                        <select class="select2 select2-multiple" multiple="multiple" data-placeholder="Choose" name="categories[]">
+                                                            @foreach($categories as $category)
+
+                                                            <option value="{{ $category->id }}" {{ ($category->id == $Parentcategory['id'] ) ? 'selected' : '' }}> {{ $category->title }} </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- /Row -->
                                             <div class="row">
@@ -110,6 +123,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Status</label>
@@ -149,7 +163,7 @@
                                         </div>
                                         <div class="form-actions mt-10">
                                             <button type="submit" class="btn btn-success  mr-10"> Save</button>
-                                            <a href="{{route("admin.category",$category['id'])}}" class="btn btn-default">Cancel</a>
+                                            <a href="{{route("admin.category",$Parentcategory['id'])}}" class="btn btn-default">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
@@ -165,6 +179,8 @@
 
 @push('scripts')
     <script>
+        // $('.selectpicker').multiSelect();
+        $(".select2").select2();
         $("#set_duration").change(function() {
             if($(this).prop('checked')) {
                 $("#duration").attr('disabled', false);
